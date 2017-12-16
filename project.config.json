@@ -10,7 +10,7 @@
 	"compileType": "miniprogram",
 	"libVersion": "1.6.4",
 	"appid": "touristappid",
-	"projectname": "mall-mp",
+	"projectname": "myshop-mp",
 	"condition": {
 		"search": {
 			"current": -1,

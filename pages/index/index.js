@@ -9,14 +9,15 @@ Page({
     newGoods: [],
     hotGoods: [],
     topics: [],
-    brands: [
+    tireBrands: [
       { new_pic_url: '/static/images/timg.jpeg', name: '米其林', intro: '送胎压监测' },
       { new_pic_url: '/static/images/timg-2.jpeg', name: '德国马牌', intro: '送胎压监测' },
       { new_pic_url: '/static/images/timg-3.jpeg', name: '邓禄普', intro: '送胎压监测' },
       { new_pic_url: '/static/images/timg-4.jpeg', name: '固特异', intro: '送胎压监测' }
     ],
+    maintainBrands: [],
     floorGoods: [],
-    banner: [{ image_url: '/static/images/banner1.jpg' }, { image_url: '/static/images/banner2.jpg' }],
+    banner: [],
     channel: [
       { icon_url: '/static/images/detail_kefu.png', name: '四轮定位' },
       { icon_url: '/static/images/detail_kefu.png', name: '安全驾驶' },
@@ -33,7 +34,7 @@ Page({
 
   getIndexData: function () {
     let that = this;
-    util.request(api.BannerList).then(function (res) {
+    util.request(api.IndexUrl).then(function (res) {
       that.setData({
         // newGoods: res.data.newGoodsList,
         // hotGoods: res.data.hotGoodsList,
@@ -41,9 +42,11 @@ Page({
         // brand: res.data.brandList,
         // floorGoods: res.data.categoryList,
         banner: res.banners,
+        tireBrands: res.tire_brands,
         // channel: res.data.channel
       });
       console.log("banner..", that.data.banner)
+      console.log("tireBrands...", that.data.tireBrands)
     });
   },
   onLoad: function (options) {

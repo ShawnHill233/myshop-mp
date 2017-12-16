@@ -10,14 +10,14 @@
 
     <view class="cate-item">
         <view class="h">
-            <text class="name">{{currentCategory.name}}</text>
-            <text class="desc">{{currentCategory.front_name}}</text>
+            <text class="name">{{metaTitle}}</text>
+            <text class="desc">{{metaDescription}}</text>
         </view>
         <view class="b">
             <navigator class="item {{(iindex + 1) % 2 == 0 ? 'item-b' : ''}}"   url="/pages/goods/goods?id={{iitem.id}}" wx:for="{{goodsList}}" wx:for-item="iitem" wx:for-index="iindex" >
-                <image class="img" src="{{iitem.list_pic_url}}" background-size="cover"></image>
+                <image class="img" src="{{'http://localhost:3000' + iitem.master.images[0].large_url}}" background-size="cover"></image>
                 <text class="name">{{iitem.name}}</text>
-                <text class="price">￥{{iitem.retail_price}}</text>
+                <text class="price">￥{{iitem.price}}</text>
             </navigator>
         </view>
     </view>

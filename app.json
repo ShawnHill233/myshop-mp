@@ -1,6 +1,11 @@
 {
   "pages": [
     "pages/index/index",
+    
+    "pages/category/category",
+    
+    "pages/search/search",
+    
     "pages/catalog/catalog",
     "pages/newGoods/newGoods",
     "pages/hotGoods/hotGoods",
@@ -24,8 +29,6 @@
     "pages/topicComment/topicComment",
     "pages/brand/brand",
     "pages/brandDetail/brandDetail",
-    "pages/search/search",
-    "pages/category/category",
     "pages/cart/cart",
     "pages/shopping/checkout/checkout",
     "pages/shopping/address/address",

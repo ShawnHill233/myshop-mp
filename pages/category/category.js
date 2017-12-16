@@ -7,7 +7,8 @@ Page({
     navList: [],
     goodsList: [],
     id: 0,
-    currentCategory: {},
+    metaTitle: '',
+    metaDescription: '',
     scrollLeft: 0,
     scrollTop: 0,
     scrollHeight: 0,
@@ -19,7 +20,9 @@ Page({
     var that = this;
     if (options.id) {
       that.setData({
-        id: parseInt(options.id)
+        id: parseInt(options.id),
+        metaTitle: options.metaTitle,
+        metaDescription: options.metaDescription
       });
     }
 
@@ -31,43 +34,10 @@ Page({
       }
     });
 
-
-    this.getCategoryInfo();
+    this.getGoodsList();
 
   },
-  getCategoryInfo: function () {
-    let that = this;
-    util.request(api.GoodsCategory, { id: this.data.id })
-      .then(function (res) {
 
-        if (res.errno == 0) {
-          that.setData({
-            navList: res.data.brotherCategory,
-            currentCategory: res.data.currentCategory
-          });
-
-          //nav位置
-          let currentIndex = 0;
-          let navListCount = that.data.navList.length;
-          for (let i = 0; i < navListCount; i++) {
-            currentIndex += 1;
-            if (that.data.navList[i].id == that.data.id) {
-              break;
-            }
-          }
-          if (currentIndex > navListCount / 2 && navListCount > 5) {
-            that.setData({
-              scrollLeft: currentIndex * 60
-            });
-          }
-          that.getGoodsList();
-
-        } else {
-          //显示错误信息
-        }
-        
-      });
-  },
   onReady: function () {
     // 页面渲染完成
   },
@@ -81,12 +51,16 @@ Page({
   getGoodsList: function () {
     var that = this;
 
-    util.request(api.GoodsList, {categoryId: that.data.id, page: that.data.page, size: that.data.size})
+    util.request(api.GoodsList, { id: that.data.id, page: that.data.page, size: that.data.size })
       .then(function (res) {
+        console.log("get goods list res", res)
+        
         that.setData({
-          goodsList: res.data.goodsList,
+          goodsList: res.products,
         });
       });
+
+    console.log("goodsList..", that.data.goodsList)
   },
   onUnload: function () {
     // 页面关闭

@@ -1,15 +1,16 @@
 var NewApiRootUrl = 'http://localhost:3000/api/v1/';
 
 module.exports = {
+    IndexUrl: NewApiRootUrl + 'index', //首页数据接口
     BannerList: NewApiRootUrl + 'banners',
-    IndexUrl: NewApiRootUrl + 'index/index', //首页数据接口
+    GoodsList: NewApiRootUrl + 'taxons/products',  //获得商品列表
+    
     CatalogList: NewApiRootUrl + 'catalog/index',  //分类目录全部分类数据接口
     CatalogCurrent: NewApiRootUrl + 'catalog/current',  //分类目录当前分类数据接口
 
     AuthLoginByWeixin: NewApiRootUrl + 'auth/loginByWeixin', //微信登录
 
     GoodsCount: NewApiRootUrl + 'goods/count',  //统计商品总数
-    GoodsList: NewApiRootUrl + 'goods/list',  //获得商品列表
     GoodsCategory: NewApiRootUrl + 'goods/category',  //获得分类数据
     GoodsDetail: NewApiRootUrl + 'goods/detail',  //获得商品的详情
     GoodsNew: NewApiRootUrl + 'goods/new',  //新品

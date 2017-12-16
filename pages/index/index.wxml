@@ -21,10 +21,10 @@
       </navigator>
     </view>
     <view class="b">
-      <view class="item item-1" wx:for="{{brands}}" wx:key="item.id">
-        <navigator url="/pages/brandDetail/brandDetail?id={{item.id}}">
+      <view class="item item-1" wx:for="{{tireBrands}}" wx:key="item.id">
+        <navigator url="/pages/category/category?id={{item.taxon_id}}&metaTitle={{item.meta_title}}&metaDescription={{item.meta_description}}">
           <view class="wrap">
-            <image class="img" src="{{item.new_pic_url}}" mode="aspectFill"></image>
+            <image class="img" src="{{item.icon}}" mode="aspectFill"></image>
             <view class="mt">
               <text class="brand">{{item.name}}</text>
               <!-- <text class="price">{{item.floor_price}}</text> -->
@@ -45,7 +45,7 @@
       <view class="item item-1" wx:for="{{brand}}" wx:key="item.id">
         <navigator url="/pages/brandDetail/brandDetail?id={{item.id}}">
           <view class="wrap">
-            <image class="img" src="{{item.new_pic_url}}" mode="aspectFill"></image>
+            <image class="img" src="{{item.icon}}" mode="aspectFill"></image>
             <view class="mt">
               <text class="brand">{{item.name}}</text>
               <text class="price">{{item.floor_price}}</text>
