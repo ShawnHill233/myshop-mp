@@ -22,27 +22,25 @@ Page({
   },
   getBrand: function () {
     let that = this;
-    util.request(api.BrandDetail, { id: that.data.id }).then(function (res) {
-      if (res.errno === 0) {
-        that.setData({
-          brand: res.data.brand
-        });
-
-        that.getGoodsList();
-      }
+    util.request(api.BrandList + '/' + that.data.id).then(function (res) {
+      that.setData({
+        brand: res
+      });
+      that.getGoodsList();
     });
   },
   getGoodsList() {
     var that = this;
 
-    util.request(api.GoodsList, { brandId: that.data.id, page: that.data.page, size: that.data.size})
+    util.request(api.GoodsList, { id: that.data.id, page: that.data.page, size: that.data.size })
       .then(function (res) {
-        if (res.errno === 0) {
-          that.setData({
-            goodsList: res.data.goodsList
-          });
-        }
+        console.log("get goods list res", res)
+
+        that.setData({
+          goodsList: res.products,
+        });
       });
+    console.log("goodsList..", that.data.goodsList)
   },
   onReady: function () {
     // 页面渲染完成

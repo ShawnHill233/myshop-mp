@@ -1,9 +1,12 @@
 var NewApiRootUrl = 'http://localhost:3000/api/v1/';
 
 module.exports = {
+    ApiRootUrl: NewApiRootUrl,
     IndexUrl: NewApiRootUrl + 'index', //首页数据接口
     BannerList: NewApiRootUrl + 'banners',
     GoodsList: NewApiRootUrl + 'taxons/products',  //获得商品列表
+    BrandList: NewApiRootUrl + 'brands',  //品牌
+    
     
     CatalogList: NewApiRootUrl + 'catalog/index',  //分类目录全部分类数据接口
     CatalogCurrent: NewApiRootUrl + 'catalog/current',  //分类目录当前分类数据接口
@@ -16,9 +19,6 @@ module.exports = {
     GoodsNew: NewApiRootUrl + 'goods/new',  //新品
     GoodsHot: NewApiRootUrl + 'goods/hot',  //热门
     GoodsRelated: NewApiRootUrl + 'goods/related',  //商品详情页的关联商品（大家都在看）
-
-    BrandList: NewApiRootUrl + 'brand/list',  //品牌列表
-    BrandDetail: NewApiRootUrl + 'brand/detail',  //品牌详情
 
     CartList: NewApiRootUrl + 'cart/index', //获取购物车的数据
     CartAdd: NewApiRootUrl + 'cart/add', // 添加商品到购物车
