@@ -105,7 +105,7 @@
 
 .section-nav .t{
     float: left;
-    width: 600rpx;
+    width: 200rpx;
     height: 108rpx;
     line-height: 108rpx;
     font-size: 29rpx;
@@ -115,10 +115,10 @@
 
 .section-nav .i{
     float: right;
-    width: 52rpx;
-    height: 52rpx;
+    width: 330rpx;
+    height: 108rpx;
     margin-right: 16rpx;
-    margin-top: 28rpx;
+    margin-top: 20rpx; 
 }
 
 .section-act .t{
@@ -682,7 +682,7 @@
     width: 322rpx;
     height: 71rpx;
     border: 1px solid #ccc;
-    display: flex;
+     display: flex; 
 }
 
 .number-item .cut{

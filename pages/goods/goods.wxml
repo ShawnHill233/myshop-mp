@@ -2,30 +2,38 @@
   <view wx:if="{{!openAttr}}">
     <swiper class="goodsimgs" indicator-dots="true" autoplay="true" interval="3000" duration="1000">
       <swiper-item wx:for="{{gallery}}" wx:key="{{item.id}}">
-        <image src="{{item.img_url}}" background-size="cover"></image>
+        <image src="{{'http://localhost:3000' + item.large_url}}" background-size="cover"></image>
       </swiper-item>
     </swiper>
-    <view class="service-policy">
+    <!-- <view class="service-policy">
       <view class="item">30天无忧退货</view>
       <view class="item">48小时快速退款</view>
       <view class="item">满88元免邮费</view>
-    </view>
+    </view> -->
     <view class="goods-info">
       <view class="c">
         <text class="name">{{goods.name}}</text>
-        <text class="desc">{{goods.goods_brief}}</text>
-        <text class="price">￥{{goods.retail_price}}</text>
-        <view class="brand" wx:if="{{brand.name}}">
+        <text class="desc">{{goods.description}}</text>
+        <text class="price">￥{{goods.price}}</text>
+        <!-- <view class="brand" wx:if="{{brand.name}}">
           <navigator url="../brandDetail/brandDetail?id={{brand.brandId}}">
             <text>{{brand.name}}</text>
           </navigator>
+        </view> -->
+      </view>
+    </view>
+    <view class="section-nav section-attr">
+      <view class="t">请选择数量</view>
+      <!-- <image class="i" src="../../static/images/address_right.png" background-size="cover"></image> -->
+      <view class="number-item i">
+        <view class="selnum">
+          <view class="cut" bindtap="cutNumber">-</view>
+          <input value="{{number}}" class="number" disabled="true" type="number" />
+          <view class="add" bindtap="addNumber">+</view>
         </view>
       </view>
     </view>
-    <view class="section-nav section-attr" bindtap="switchAttrPop">
-      <view class="t">请选择规格数量</view>
-      <image class="i" src="../../static/images/address_right.png" background-size="cover"></image>
-    </view>
+
     <!--<view class="section-nav section-act">
       <view class="t">
         <view class="label">1个促销:</view>
@@ -54,7 +62,7 @@
             {{comment.data.content}}
           </view>
           <view class="imgs" wx:if="{{comment.data.pic_list.length > 0}}">
-            <image class="img"  wx:for="{{comment.data.pic_list}}" wx:key="{{item.id}}" src="{{item.pic_url}}"></image>
+            <image class="img" wx:for="{{comment.data.pic_list}}" wx:key="{{item.id}}" src="{{item.pic_url}}"></image>
           </view>
           <!-- <view class="spec">白色 2件</view> -->
         </view>

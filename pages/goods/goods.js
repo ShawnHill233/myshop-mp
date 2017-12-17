@@ -26,36 +26,36 @@ Page({
   },
   getGoodsInfo: function () {
     let that = this;
-    util.request(api.GoodsDetail, { id: that.data.id }).then(function (res) {
-      if (res.errno === 0) {
+    util.request(api.ApiRootUrl + "products/" + that.data.id).then(function (res) {
+      console.log("goods res...", res)
+      
         that.setData({
-          goods: res.data.info,
-          gallery: res.data.gallery,
-          attribute: res.data.attribute,
-          issueList: res.data.issue,
-          comment: res.data.comment,
-          brand: res.data.brand,
-          specificationList: res.data.specificationList,
-          productList: res.data.productList,
-          userHasCollect: res.data.userHasCollect
+          goods: res.master,
+          gallery: res.master.images,
+          // attribute: res.data.attribute,
+          // issueList: res.data.issue,
+          // comment: res.data.comment,
+          // brand: res.data.brand,
+          // specificationList: res.data.specificationList,
+          // productList: res.data.productList,
+          // userHasCollect: res.data.userHasCollect
         });
+        console.log("gallery...", that.data.gallery)
 
-        if (res.data.userHasCollect == 1) {
-          that.setData({
-            'collectBackImage': that.data.hasCollectImage
-          });
-        } else {
-          that.setData({
-            'collectBackImage': that.data.noCollectImage
-          });
-        }
+        // if (res.data.userHasCollect == 1) {
+        //   that.setData({
+        //     'collectBackImage': that.data.hasCollectImage
+        //   });
+        // } else {
+        //   that.setData({
+        //     'collectBackImage': that.data.noCollectImage
+        //   });
+        // }
 
-        WxParse.wxParse('goodsDetail', 'html', res.data.info.goods_desc, that);
+        // WxParse.wxParse('goodsDetail', 'html', res.data.info.goods_desc, that);
 
-        that.getGoodsRelated();
-      }
+        // that.getGoodsRelated();
     });
-
   },
   getGoodsRelated: function () {
     let that = this;
