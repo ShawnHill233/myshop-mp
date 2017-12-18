@@ -268,42 +268,19 @@ Page({
   addToCart: function () {
     var that = this;
     if (this.data.openAttr == false) {
-      //打开规格选择窗口
-      this.setData({
-        openAttr: !this.data.openAttr,
-        collectBackImage: "/static/images/detail_back.png"
-      });
-    } else {
-
-      //提示选择完整规格
-      if (!this.isCheckedAllSpec()) {
-        return false;
-      }
-
-      //根据选中的规格，判断是否有对应的sku信息
-      let checkedProduct = this.getCheckedProductItem(this.getCheckedSpecKey());
-      if (!checkedProduct || checkedProduct.length <= 0) {
-        //找不到对应的product信息，提示没有库存
-        return false;
-      }
-
-      //验证库存
-      if (checkedProduct.goods_number < this.data.number) {
-        //找不到对应的product信息，提示没有库存
-        return false;
-      }
-
       //添加到购物车
-      util.request(api.CartAdd, { goodsId: this.data.goods.id, number: this.data.number, productId: checkedProduct[0].id }, "POST")
+      console.log('cart add request start')
+      util.request(api.CartAdd, { variant_id: this.data.goods.id, quantity: this.data.number}, "GET")
         .then(function (res) {
+          console.log('cart add request res..', res)
           let _res = res;
-          if (_res.errno == 0) {
+          if (_res.error != null) {
             wx.showToast({
               title: '添加成功'
             });
             that.setData({
-              openAttr: !that.data.openAttr,
-              cartGoodsCount: _res.data.cartTotal.goodsCount
+              // openAttr: !that.data.openAttr,
+              cartGoodsCount: _res.items_count
             });
             if (that.data.userHasCollect == 1) {
               that.setData({

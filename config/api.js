@@ -6,7 +6,15 @@ module.exports = {
     BannerList: NewApiRootUrl + 'banners',
     GoodsList: NewApiRootUrl + 'taxons/products',  //获得商品列表
     BrandList: NewApiRootUrl + 'brands',  //品牌
-    
+    CartList: NewApiRootUrl + 'carts', //获取购物车的数据
+    CartAdd: NewApiRootUrl + 'carts/populate', // 添加商品到购物车
+    CartUpdate: NewApiRootUrl + 'cart/update', // 更新购物车的商品
+    CartDelete: NewApiRootUrl + 'cart/delete', // 删除购物车的商品
+    CartChecked: NewApiRootUrl + 'cart/checked', // 选择或取消选择商品
+    CartGoodsCount: NewApiRootUrl + 'cart/goodscount', // 获取购物车商品件数
+    CartCheckout: NewApiRootUrl + 'cart/checkout', // 下单前信息确认
+
+
     
     CatalogList: NewApiRootUrl + 'catalog/index',  //分类目录全部分类数据接口
     CatalogCurrent: NewApiRootUrl + 'catalog/current',  //分类目录当前分类数据接口
@@ -20,13 +28,6 @@ module.exports = {
     GoodsHot: NewApiRootUrl + 'goods/hot',  //热门
     GoodsRelated: NewApiRootUrl + 'goods/related',  //商品详情页的关联商品（大家都在看）
 
-    CartList: NewApiRootUrl + 'cart/index', //获取购物车的数据
-    CartAdd: NewApiRootUrl + 'cart/add', // 添加商品到购物车
-    CartUpdate: NewApiRootUrl + 'cart/update', // 更新购物车的商品
-    CartDelete: NewApiRootUrl + 'cart/delete', // 删除购物车的商品
-    CartChecked: NewApiRootUrl + 'cart/checked', // 选择或取消选择商品
-    CartGoodsCount: NewApiRootUrl + 'cart/goodscount', // 获取购物车商品件数
-    CartCheckout: NewApiRootUrl + 'cart/checkout', // 下单前信息确认
 
     OrderSubmit: NewApiRootUrl + 'order/submit', // 提交订单
     PayPrepayId: NewApiRootUrl + 'pay/prepay', //获取微信统一下单prepay_id

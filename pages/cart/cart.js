@@ -40,13 +40,11 @@ Page({
   getCartList: function () {
     let that = this;
     util.request(api.CartList).then(function (res) {
-      if (res.errno === 0) {
-        console.log(res.data);
-        that.setData({
-          cartGoods: res.data.cartList,
-          cartTotal: res.data.cartTotal
-        });
-      }
+      console.log('carts...', res);
+      that.setData({
+        cartGoods: res.line_items,
+        cartTotal: res.total
+      });
 
       that.setData({
         checkedAllStatus: that.isCheckedAll()
@@ -84,10 +82,10 @@ Page({
     } else {
       //编辑状态
       let tmpCartData = this.data.cartGoods.map(function (element, index, array) {
-        if (index == itemIndex){
+        if (index == itemIndex) {
           element.checked = !element.checked;
         }
-        
+
         return element;
       });
 
@@ -98,7 +96,7 @@ Page({
       });
     }
   },
-  getCheckedGoodsCount: function(){
+  getCheckedGoodsCount: function () {
     let checkedGoodsCount = 0;
     this.data.cartGoods.forEach(function (v) {
       if (v.checked === true) {

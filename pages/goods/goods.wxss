@@ -118,7 +118,7 @@
     width: 330rpx;
     height: 108rpx;
     margin-right: 16rpx;
-    margin-top: 20rpx; 
+    padding-top: 20rpx;  
 }
 
 .section-act .t{
@@ -682,7 +682,7 @@
     width: 322rpx;
     height: 71rpx;
     border: 1px solid #ccc;
-     display: flex; 
+    display: flex; 
 }
 
 .number-item .cut{
