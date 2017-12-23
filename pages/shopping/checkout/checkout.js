@@ -22,45 +22,57 @@ Page({
 
     // 页面初始化 options为页面跳转所带来的参数
 
-    try {
-      var addressId = wx.getStorageSync('addressId');
-      if (addressId) {
-        this.setData({
-          'addressId': addressId
-        });
-      }
+    // try {
+    //   var addressId = wx.getStorageSync('addressId');
+    //   if (addressId) {
+    //     this.setData({
+    //       'addressId': addressId
+    //     });
+    //   }
 
-      var couponId = wx.getStorageSync('couponId');
-      if (couponId) {
-        this.setData({
-          'couponId': couponId
-        });
-      }
-    } catch (e) {
-      // Do something when catch error
-    }
+    //   var couponId = wx.getStorageSync('couponId');
+    //   if (couponId) {
+    //     this.setData({
+    //       'couponId': couponId
+    //     });
+    //   }
+    // } catch (e) {
+    //   // Do something when catch error
+    // }
+    let that = this;
+    util.request(api.CartList).then(function (res) {
+      console.log('carts...', res);
+      that.setData({
+        checkedGoodsList: res.line_items,
+        actualPrice: res.item_total
+      });
 
+      // that.setData({
+      //   checkedAllStatus: that.isCheckedAll()
+      // });
+    });
 
   },
   getCheckoutInfo: function () {
-    let that = this;
-    util.request(api.CartCheckout, { addressId: that.data.addressId, couponId: that.data.couponId }).then(function (res) {
-      if (res.errno === 0) {
-        console.log(res.data);
-        that.setData({
-          checkedGoodsList: res.data.checkedGoodsList,
-          checkedAddress: res.data.checkedAddress,
-          actualPrice: res.data.actualPrice,
-          checkedCoupon: res.data.checkedCoupon,
-          couponList: res.data.couponList,
-          couponPrice: res.data.couponPrice,
-          freightPrice: res.data.freightPrice,
-          goodsTotalPrice: res.data.goodsTotalPrice,
-          orderTotalPrice: res.data.orderTotalPrice
-        });
-      }
-      wx.hideLoading();
-    });
+    // let that = this;
+    // util.request(api.CartCheckout, { addressId: that.data.addressId, couponId: that.data.couponId }).then(function (res) {
+    //   if (res.errno === 0) {
+    //     console.log(res.data);
+    //     that.setData({
+    //       checkedGoodsList: res.data.checkedGoodsList,
+    //       checkedAddress: res.data.checkedAddress,
+    //       actualPrice: res.data.actualPrice,
+    //       checkedCoupon: res.data.checkedCoupon,
+    //       couponList: res.data.couponList,
+    //       couponPrice: res.data.couponPrice,
+    //       freightPrice: res.data.freightPrice,
+    //       goodsTotalPrice: res.data.goodsTotalPrice,
+    //       orderTotalPrice: res.data.orderTotalPrice
+    //     });
+    //   }
+    //   wx.hideLoading();
+    // });
+    wx.hideLoading();
   },
   selectAddress() {
     wx.navigateTo({

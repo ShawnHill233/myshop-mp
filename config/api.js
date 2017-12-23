@@ -6,8 +6,9 @@ module.exports = {
     BannerList: NewApiRootUrl + 'banners',
     GoodsList: NewApiRootUrl + 'taxons/products',  //获得商品列表
     BrandList: NewApiRootUrl + 'brands',  //品牌
-    CartList: NewApiRootUrl + 'carts', //获取购物车的数据
-    CartAdd: NewApiRootUrl + 'carts/populate', // 添加商品到购物车
+    CartList: NewApiRootUrl + 'orders/current', //获取购物车的数据
+    
+    CartAdd: NewApiRootUrl + 'orders/populate', // 添加商品到购物车
     CartUpdate: NewApiRootUrl + 'cart/update', // 更新购物车的商品
     CartDelete: NewApiRootUrl + 'cart/delete', // 删除购物车的商品
     CartChecked: NewApiRootUrl + 'cart/checked', // 选择或取消选择商品

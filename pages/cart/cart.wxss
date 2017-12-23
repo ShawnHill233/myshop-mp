@@ -108,6 +108,7 @@ page{
     height: 164rpx;
     width: 672rpx;
     border-bottom: 1px solid #f4f4f4;
+    margin-left: 20px; 
 }
 
 .cart-view .item .img{
