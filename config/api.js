@@ -1,3 +1,4 @@
+
 var NewApiRootUrl = 'http://localhost:3000/api/v1/';
 
 module.exports = {
@@ -9,6 +10,11 @@ module.exports = {
     CartList: NewApiRootUrl + 'orders/current', //获取购物车的数据
     
     CartAdd: NewApiRootUrl + 'orders/populate', // 添加商品到购物车
+    OrderSubmit: NewApiRootUrl + 'orders', // 提交订单
+
+
+
+
     CartUpdate: NewApiRootUrl + 'cart/update', // 更新购物车的商品
     CartDelete: NewApiRootUrl + 'cart/delete', // 删除购物车的商品
     CartChecked: NewApiRootUrl + 'cart/checked', // 选择或取消选择商品
@@ -30,7 +36,6 @@ module.exports = {
     GoodsRelated: NewApiRootUrl + 'goods/related',  //商品详情页的关联商品（大家都在看）
 
 
-    OrderSubmit: NewApiRootUrl + 'order/submit', // 提交订单
     PayPrepayId: NewApiRootUrl + 'pay/prepay', //获取微信统一下单prepay_id
 
     CollectList: NewApiRootUrl + 'collect/list',  //收藏列表

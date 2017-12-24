@@ -16,7 +16,9 @@ Page({
     orderTotalPrice: 0.00,  //订单总价
     actualPrice: 0.00,     //实际需要支付的总价
     addressId: 0,
-    couponId: 0
+    couponId: 0,
+
+    orderNumber: ''
   },
   onLoad: function (options) {
 
@@ -44,7 +46,8 @@ Page({
       console.log('carts...', res);
       that.setData({
         checkedGoodsList: res.line_items,
-        actualPrice: res.item_total
+        actualPrice: res.item_total,
+        orderNumber: res.number
       });
 
       // that.setData({
@@ -105,25 +108,25 @@ Page({
 
   },
   submitOrder: function () {
-    if (this.data.addressId <= 0) {
-      util.showErrorToast('请选择收货地址');
-      return false;
-    }
-    util.request(api.OrderSubmit, { addressId: this.data.addressId, couponId: this.data.couponId }, 'POST').then(res => {
-      if (res.errno === 0) {
-        const orderId = res.data.orderInfo.id;
-        pay.payOrder(parseInt(orderId)).then(res => {
+    // if (this.data.addressId <= 0) {
+    //   util.showErrorToast('请选择收货地址');
+    //   return false;
+    // }
+    util.request(api.OrderSubmit + '/' + this.data.orderNumber + '/submit',{}, 'POST').then(res => {
+      // if (res.errno === 0) {
+        // const orderId = res.data.orderInfo.id;
+        // pay.payOrder(parseInt(orderId)).then(res => {
+          // wx.redirectTo({
+          //   url: '/pages/payResult/payResult?status=1&orderId=' + orderId
+          // });
+        // }).catch(res => {
           wx.redirectTo({
-            url: '/pages/payResult/payResult?status=1&orderId=' + orderId
+            url: '/pages/pay/pay'
           });
-        }).catch(res => {
-          wx.redirectTo({
-            url: '/pages/payResult/payResult?status=0&orderId=' + orderId
-          });
-        });
-      } else {
-        util.showErrorToast('下单失败');
-      }
+        // });
+      // } else {
+      //   util.showErrorToast('下单失败');
+      // }
     });
   }
 })
