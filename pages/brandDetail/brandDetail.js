@@ -22,7 +22,7 @@ Page({
   },
   getBrand: function () {
     let that = this;
-    util.request(api.BrandList + '/' + that.data.id).then(function (res) {
+    util.request(api.ApiRootUrl + 'brands/' + that.data.id).then(function (res) {
       that.setData({
         brand: res
       });
@@ -32,7 +32,7 @@ Page({
   getGoodsList() {
     var that = this;
 
-    util.request(api.GoodsList, { id: that.data.id, page: that.data.page, size: that.data.size })
+    util.request(api.ApiRootUrl + 'products', { brand_id: that.data.id, page: that.data.page, size: that.data.size })
       .then(function (res) {
         console.log("get goods list res", res)
 

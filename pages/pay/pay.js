@@ -55,7 +55,25 @@ Page({
       }
     });
   },
+  postPay() {
+    let that = this;
+    util.request(api.PostPay + 'order_number' + '/post_pay',{}, 'POST').then(function (res) {
+      if (res.errno === 0) {
+        wx.redirectTo({
+          url: '/pages/payResult/payResult?status=true',
+        })
+      } else {
+        wx.redirectTo({
+          url: '/pages/payResult/payResult?status=false',
+        })
+      }
+    });
+  },
   startPay() {
-    this.requestPayParam();
+    if(payWay == 'postpay'){
+      this.postPay();
+    }else{
+      this.requestPayParam();
+    }
   }
 })

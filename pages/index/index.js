@@ -27,14 +27,14 @@ Page({
   onShareAppMessage: function () {
     return {
       title: '张氏轮胎',
-      desc: '汽车服务中心',
+      desc: '平昌养车',
       path: '/pages/index/index'
     }
   },
 
   getIndexData: function () {
     let that = this;
-    util.request(api.IndexUrl).then(function (res) {
+    util.request(api.ApiRootUrl + 'home_page').then(function (res) {
       that.setData({
         // newGoods: res.data.newGoodsList,
         // hotGoods: res.data.hotGoodsList,
@@ -43,6 +43,7 @@ Page({
         // floorGoods: res.data.categoryList,
         banner: res.banners,
         tireBrands: res.tire_brands,
+        clearBrands: res.clear_brands,
         // channel: res.data.channel
       });
       console.log("banner..", that.data.banner)

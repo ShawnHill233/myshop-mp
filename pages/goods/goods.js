@@ -30,8 +30,8 @@ Page({
       console.log("goods res...", res)
       
         that.setData({
-          goods: res.master,
-          gallery: res.master.images,
+          goods: res,
+          gallery: res.images,
           // attribute: res.data.attribute,
           // issueList: res.data.issue,
           // comment: res.data.comment,

@@ -39,7 +39,7 @@
   "window": {
     "backgroundTextStyle": "dark",
     "navigationBarBackgroundColor": "#fff",
-    "navigationBarTitleText": "汽车服务中心",
+    "navigationBarTitleText": "平昌养车",
     "navigationBarTextStyle": "black",
     "enablePullDownRefresh": "true"
   },
