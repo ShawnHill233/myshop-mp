@@ -270,7 +270,7 @@ Page({
     if (this.data.openAttr == false) {
       //添加到购物车
       console.log('cart add request start')
-      util.request(api.CartAdd, { variant_id: this.data.goods.id, quantity: this.data.number}, "GET")
+      util.request(api.ApiRootUrl + 'carts/add', { variant_id: this.data.goods.id, quantity: this.data.number}, "POST")
         .then(function (res) {
           console.log('cart add request res..', res)
           let _res = res;

@@ -18,11 +18,11 @@ function loginByWeixin() {
       return util.getUserInfo();
     }).then((userInfo) => {
       //登录远程服务器
-      util.request(api.AuthLoginByWeixin, { code: code, userInfo: userInfo }, 'POST').then(res => {
+      util.request(api.ApiRootUrl + 'users/login', { code: code }, 'POST').then(res => {
         if (res.errno === 0) {
           //存储用户信息
-          wx.setStorageSync('userInfo', res.data.userInfo);
-          wx.setStorageSync('token', res.data.token);
+          // wx.setStorageSync('userInfo', res.data.userInfo);
+          wx.setStorageSync('token', res.token);
 
           resolve(res);
         } else {

@@ -28,42 +28,39 @@ function request(url, data = {}, method = "GET") {
       data: data,
       method: method,
       header: {
-        'X-Spree-Token': wx.getStorageSync('token')
+        'X-Auth-Token': wx.getStorageSync('token')
       },
       success: function (res) {
         console.log(res)
         console.log("success");
 
         if (res.statusCode == 200) {
+          resolve(res.data);
+        } else if (res.statusCode == 401) {
+          //需要登录后才可以操作
+          console.log("relogin.....")
+          let code = null;
+          return login().then((res) => {
+            code = res.code;
+            return getUserInfo();
+          }).then((userInfo) => {
+            //登录远程服务器
+            request(api.ApiRootUrl + 'users/login', { code: code }, 'POST').then(res => {
+              if (res.statusCode == 200) {
+                //存储用户信息
+                // wx.setStorageSync('userInfo', res.data.userInfo);
+                wx.setStorageSync('token', res.data.token);
 
-          if (res.statusCode == 401) {
-            //需要登录后才可以操作
-
-            let code = null;
-            return login().then((res) => {
-              code = res.code;
-              return getUserInfo();
-            }).then((userInfo) => {
-              //登录远程服务器
-              request(api.AuthLoginByWeixin, { code: code, userInfo: userInfo }, 'POST').then(res => {
-                if (res.errno === 0) {
-                  //存储用户信息
-                  wx.setStorageSync('userInfo', res.data.userInfo);
-                  wx.setStorageSync('token', res.data.token);
-                  
-                  resolve(res);
-                } else {
-                  reject(res);
-                }
-              }).catch((err) => {
-                reject(err);
-              });
+                resolve(res);
+              } else {
+                reject(res);
+              }
             }).catch((err) => {
               reject(err);
-            })
-          } else {
-            resolve(res.data);
-          }
+            });
+          }).catch((err) => {
+            reject(err);
+          })
         } else {
           reject(res.errMsg);
         }
