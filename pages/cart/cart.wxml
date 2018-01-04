@@ -1,8 +1,8 @@
 <view class="container">
   <view class="service-policy">
-    <view class="item">30天无忧退货</view>
-    <view class="item">48小时快速退款</view>
-    <view class="item">满88元免邮费</view>
+    <view class="item">门店提供安装服务</view>
+    <view class="item">支持在线支付</view>
+    <view class="item">支持到店支付</view>
   </view>
   <view class="no-cart" wx:if="{{cartGoods.length <= 0}}">
     <view class="c">
@@ -17,15 +17,15 @@
           <view class="item {{isEditCart ? 'edit' : ''}}" wx:for="{{cartGoods}}" wx:key="{{item.id}}">
              <!-- <view class="checkbox {{item.checked ? 'checked' : ''}}" bindtap="checkedItem" data-item-index="{{index}}"></view>  -->
             <view class="cart-goods">
-              <image class="img" src="{{'http://localhost:3000' + item.variant.images[0].product_url}}"></image>
+              <image class="img" src="{{item.image}}"></image>
               <view class="info">
                 <view class="t">
-                  <text class="name">{{item.variant.name}}</text>
+                  <text class="name">{{item.name}}</text>
                   <text class="num">x{{item.quantity}}</text>
                 </view>
                 <view class="attr">{{ isEditCart ? '已选择:' : ''}}{{item.goods_specifition_name_value}}</view>
                 <view class="b">
-                  <text class="price">￥{{item.total}}</text>
+                  <text class="price">￥{{item.price * item.quantity}}</text>
                   <view class="selnum">
                     <view class="cut" bindtap="cutNumber" data-item-index="{{index}}">-</view>
                     <input value="{{item.number}}" class="number" disabled="true" type="number" />
@@ -70,7 +70,7 @@
     </view>
     <view class="cart-bottom">
       <!-- <view class="checkbox {{checkedAllStatus ? 'checked' : ''}}" bindtap="checkedAll">全选({{cartTotal.checkedGoodsCount}})</view> -->
-      <view class="total">{{!isEditCart ? '￥'+cart.total : ''}}</view>
+      <view class="total">{{!isEditCart ? '￥'+ cart.total : ''}}</view>
       <!-- <view class="delete" bindtap="editCart">{{!isEditCart ? '编辑' : '完成'}}</view> -->
       <!-- <view class="checkout" bindtap="deleteCart" wx:if="{{isEditCart}}">删除所选</view> -->
       <view class="checkout" bindtap="checkoutOrder" wx:if="{{!isEditCart}}">下单</view>

@@ -270,11 +270,10 @@ Page({
     if (this.data.openAttr == false) {
       //添加到购物车
       console.log('cart add request start')
-      util.request(api.ApiRootUrl + 'carts/add', { variant_id: this.data.goods.id, quantity: this.data.number}, "POST")
-        .then(function (res) {
+      util.request(api.ApiRootUrl + 'carts/add', { variant_id: this.data.goods.id, quantity: this.data.number}, "POST").then(function (res) {
           console.log('cart add request res..', res)
           let _res = res;
-          if (_res.error != null) {
+          // if (_res.error != null) {
             wx.showToast({
               title: '添加成功'
             });
@@ -291,13 +290,13 @@ Page({
                 'collectBackImage': that.data.noCollectImage
               });
             }
-          } else {
-            wx.showToast({
-              image: '/static/images/icon_error.png',
-              title: _res.errmsg,
-              mask: true
-            });
-          }
+          // } else {
+          //   wx.showToast({
+          //     image: '/static/images/icon_error.png',
+          //     title: _res.errmsg,
+          //     mask: true
+          //   });
+          // }
 
         });
     }

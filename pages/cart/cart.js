@@ -40,7 +40,7 @@ Page({
   },
   getCartList: function () {
     let that = this;
-    util.request(api.CartList).then(function (res) {
+    util.request(api.ApiRootUrl + 'carts').then(function (res) {
       console.log('carts...', res);
       that.setData({
         cartGoods: res.line_items,

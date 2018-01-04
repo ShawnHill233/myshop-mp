@@ -46,15 +46,17 @@ function request(url, data = {}, method = "GET") {
           }).then((userInfo) => {
             //登录远程服务器
             request(api.ApiRootUrl + 'users/login', { code: code }, 'POST').then(res => {
-              if (res.statusCode == 200) {
+              console.log("get openid.......:", res)
+              // if (res.statusCode == 200) {
                 //存储用户信息
                 // wx.setStorageSync('userInfo', res.data.userInfo);
-                wx.setStorageSync('token', res.data.token);
+                console.log("openid is: ", res)
+                wx.setStorageSync('token', res.token);
 
                 resolve(res);
-              } else {
-                reject(res);
-              }
+              // } else {
+              //   reject(res);
+              // }
             }).catch((err) => {
               reject(err);
             });

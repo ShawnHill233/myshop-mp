@@ -11,7 +11,6 @@ App({
     }).catch(() => {
       
     });
-    wx.setStorageSync('token', 'b29458f933c5d8fe62db2e37199a5b9d2c2ff7baef7084c8');
   },
   
   globalData: {
