@@ -42,12 +42,12 @@ Page({
     //   // Do something when catch error
     // }
     let that = this;
-    util.request(api.CartList).then(function (res) {
+    util.request(api.ApiRootUrl + 'carts').then(function (res) {
       console.log('carts...', res);
       that.setData({
         checkedGoodsList: res.line_items,
-        actualPrice: res.item_total,
-        orderNumber: res.number
+        actualPrice: res.checked_amount,
+        // orderNumber: res.number
       });
 
       // that.setData({
@@ -112,7 +112,7 @@ Page({
     //   util.showErrorToast('请选择收货地址');
     //   return false;
     // }
-    util.request(api.OrderSubmit + '/' + this.data.orderNumber + '/submit',{}, 'POST').then(res => {
+    util.request(api.ApiRootUrl + 'orders', {}, 'POST').then(res => {
       // if (res.errno === 0) {
         // const orderId = res.data.orderInfo.id;
         // pay.payOrder(parseInt(orderId)).then(res => {
@@ -121,7 +121,7 @@ Page({
           // });
         // }).catch(res => {
           wx.redirectTo({
-            url: '/pages/pay/pay'
+            url: '/pages/pay/pay?actualPrice=' + this.data.actualPrice
           });
         // });
       // } else {

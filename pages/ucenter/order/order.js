@@ -12,7 +12,7 @@ Page({
   },
   getOrderList() {
     let that = this;
-    util.request(api.ApiRootUrl + 'orders/mine').then(function (res) {
+    util.request(api.ApiRootUrl + 'orders').then(function (res) {
       console.log(res);
       that.setData({
         orderList: res.orders

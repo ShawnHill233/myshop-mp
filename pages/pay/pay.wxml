@@ -12,12 +12,12 @@
                 <view class="name">支付宝</view>
             </view> -->
             <view class="item">
-                <view class="checkbox checked"></view>
+                <view class="checkbox {{wxpay_checked ? 'checked' : ''}}" bindtap="checkedItem" data-item-value="wx"></view>
                 <image src="/static/images/wxpay.png" class="icon"></image>
                 <view class="name">微信支付</view>
             </view>
             <view class="item">
-                <view class="checkbox"></view>
+                <view class="checkbox {{ddpay_checked ? 'checked' : ''}}" bindtap="checkedItem" data-item-value="later"></view>
                 <view class="icon-net"></view>
                 <view class="name">到店支付</view>
             </view>

@@ -203,20 +203,20 @@ Page({
 
   },
   checkoutOrder: function () {
-    //获取已选择的商品
-    // let that = this;
+    // 获取已选择的商品
+    let that = this;
 
-    // var checkedGoods = this.data.cartGoods.filter(function (element, index, array) {
-    //   if (element.checked == true) {
-    //     return true;
-    //   } else {
-    //     return false;
-    //   }
-    // });
+    var checkedGoods = this.data.cartGoods.filter(function (element, index, array) {
+      if (element.checked == true) {
+        return true;
+      } else {
+        return false;
+      }
+    });
 
-    // if (checkedGoods.length <= 0) {
-    //   return false;
-    // }
+    if (checkedGoods.length <= 0) {
+      return false;
+    }
     wx.navigateTo({
       url: '../shopping/checkout/checkout'
     })

@@ -5,12 +5,14 @@ var api = require('../../config/api.js');
 Page({
   data: {
     orderId: 0,
-    actualPrice: 0.00
+    actualPrice: 0.00,
+    wxpay_checked: true,
+    ddpay_checked: false
   },
   onLoad: function (options) {
     // 页面初始化 options为页面跳转所带来的参数
     this.setData({
-      orderId: options.orderId,
+      // orderId: options.orderId,
       actualPrice: options.actualPrice
     })
   },
@@ -74,6 +76,24 @@ Page({
       this.postPay();
     }else{
       this.requestPayParam();
+    }
+  },
+
+  checkedItem: function (event) {
+    let that = this
+    let pay_mode = event.target.dataset.itemValue;
+    that.setData({
+      wxpay_checked: false,
+      ddpay_checked: false
+    })
+    if (pay_mode == 'wx'){
+      that.setData({
+        wxpay_checked: true,
+      })
+    }else{
+      that.setData({
+        ddpay_checked: true,
+      })
     }
   }
 })

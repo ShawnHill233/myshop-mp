@@ -7,16 +7,16 @@
             </view>
             <view class="goods" wx:for="{{item.line_items}}" wx:key="{{gitem.id}}" wx:for-item="gitem">
                 <view class="img">
-                    <image src="{{'http://localhost:3000' + gitem.variant.images[0].small_url}}"></image>
+                    <image src="{{gitem.image}}"></image>
                 </view>
                 <view class="info">
-                    <text class="name">{{gitem.variant.name}}</text>
+                    <text class="name">{{gitem.name}}</text>
                     <text class="number">共{{gitem.quantity}}件商品</text>
                 </view>
                 <view class="status"></view>
             </view>
             <view class="b">
-                <view class="l">实付：￥{{item.item_total}}</view>
+                <view class="l">实付：￥{{item.total}}</view>
                 <view class="r">
                     <button class="btn" data-order-index="{{index}}" catchtap="payOrder" wx:if="{{item.handleOption.pay}}">去付款</button>
                 </view>

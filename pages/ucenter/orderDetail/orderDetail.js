@@ -3,6 +3,7 @@ var api = require('../../../config/api.js');
 
 Page({
   data: {
+    order: {},
     orderId: 0,
     orderInfo: {},
     orderGoods: [],
@@ -17,18 +18,14 @@ Page({
   },
   getOrderDetail() {
     let that = this;
-    util.request(api.OrderDetail, {
-      orderId: that.data.orderId
-    }).then(function (res) {
-      if (res.errno === 0) {
+    util.request(api.ApiRootUrl + 'orders/' + that.data.orderId).then(function (res) {
         console.log(res.data);
         that.setData({
-          orderInfo: res.data.orderInfo,
-          orderGoods: res.data.orderGoods,
-          handleOption: res.data.handleOption
+          order: res,
+          orderGoods: res.line_items,
+          // handleOption: res.data.handleOption
         });
         //that.payTimer();
-      }
     });
   },
   payTimer() {
@@ -44,28 +41,9 @@ Page({
     }, 1000);
   },
   payOrder() {
-    let that = this;
-    util.request(api.PayPrepayId, {
-      orderId: that.data.orderId || 15
-    }).then(function (res) {
-      if (res.errno === 0) {
-        const payParam = res.data;
-        wx.requestPayment({
-          'timeStamp': payParam.timeStamp,
-          'nonceStr': payParam.nonceStr,
-          'package': payParam.package,
-          'signType': payParam.signType,
-          'paySign': payParam.paySign,
-          'success': function (res) {
-            console.log(res)
-          },
-          'fail': function (res) {
-            console.log(res)
-          }
-        });
-      }
-    });
-
+    wx.redirectTo({
+      url: '/pages/pay/pay?actualPrice=' + this.data.order.total,
+    })
   },
   onReady: function () {
     // 页面渲染完成
@@ -78,5 +56,14 @@ Page({
   },
   onUnload: function () {
     // 页面关闭
+  },
+  cancelOrder: function(){
+    let that = this;
+    util.request(api.ApiRootUrl + 'orders/' + that.data.orderId + '/cancel', {}, 'POST').then(function (res) {
+      console.log(res.data);
+      that.setData({
+        order: res,
+      });
+    });
   }
 })
