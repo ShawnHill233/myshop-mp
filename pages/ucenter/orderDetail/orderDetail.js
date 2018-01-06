@@ -42,7 +42,7 @@ Page({
   },
   payOrder() {
     wx.redirectTo({
-      url: '/pages/pay/pay?actualPrice=' + this.data.order.total,
+      url: '/pages/pay/pay?actualPrice=' + this.data.order.total + '&orderId=' + this.data.orderId,
     })
   },
   onReady: function () {

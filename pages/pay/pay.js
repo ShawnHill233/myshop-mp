@@ -6,13 +6,12 @@ Page({
   data: {
     orderId: 0,
     actualPrice: 0.00,
-    wxpay_checked: true,
-    ddpay_checked: false
+    payWay: 'wx',
   },
   onLoad: function (options) {
     // 页面初始化 options为页面跳转所带来的参数
     this.setData({
-      // orderId: options.orderId,
+      orderId: options.orderId,
       actualPrice: options.actualPrice
     })
   },
@@ -57,42 +56,34 @@ Page({
       }
     });
   },
-  postPay() {
+  payLater() {
     let that = this;
-    util.request(api.PostPay + 'order_number' + '/post_pay',{}, 'POST').then(function (res) {
-      if (res.errno === 0) {
+    util.request(api.ApiRootUrl + 'orders/' + this.data.orderId + '/delay_pay', {}, 'POST').then(function (res) {
         wx.redirectTo({
-          url: '/pages/payResult/payResult?status=true',
+          url: '/pages/payResult/payResult?status=success',
         })
-      } else {
-        wx.redirectTo({
-          url: '/pages/payResult/payResult?status=false',
-        })
-      }
     });
   },
   startPay() {
-    if(payWay == 'postpay'){
-      this.postPay();
-    }else{
+    let payWay = this.data.payWay;
+    if (payWay == 'delay'){
+      this.payLater();
+    }else if(payWay == 'wx'){
       this.requestPayParam();
     }
   },
 
   checkedItem: function (event) {
     let that = this
-    let pay_mode = event.target.dataset.itemValue;
-    that.setData({
-      wxpay_checked: false,
-      ddpay_checked: false
-    })
-    if (pay_mode == 'wx'){
+    let checked_payWay = event.target.dataset.itemValue;
+    
+    if (checked_payWay == 'wx'){
       that.setData({
-        wxpay_checked: true,
+        payWay: 'wx',
       })
-    }else{
+    } else if (checked_payWay == 'delay'){
       that.setData({
-        ddpay_checked: true,
+        payWay: 'delay',
       })
     }
   }

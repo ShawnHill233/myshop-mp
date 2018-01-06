@@ -64,7 +64,7 @@ function request(url, data = {}, method = "GET") {
             reject(err);
           })
         } else {
-          reject(res.errMsg);
+          reject(res.error);
         }
 
       },
