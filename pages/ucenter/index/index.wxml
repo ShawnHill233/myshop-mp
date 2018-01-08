@@ -1,9 +1,9 @@
 <view class="container">
   <view class="profile-info" bindtap="goLogin">
-    <image class="avatar" src="{{userInfo.avatar}}"></image>
+    <image class="avatar" src="{{userInfo.avatarUrl}}"></image>
     <view class="info">
-      <text class="name">{{userInfo.nickname}}</text>
-      <!-- <text class="level">{{userInfo.username}}</text> -->
+      <text class="name">{{userInfo.nickName}}</text>
+       <text class="level">VIP</text> 
     </view>
   </view>
 

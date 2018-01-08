@@ -5,19 +5,20 @@ App({
   onLaunch: function () {
     //获取用户的登录信息
     user.checkLogin().then(res => {
-      console.log('app login')
+      console.log('app logined.')
       this.globalData.userInfo = wx.getStorageSync('userInfo');
       this.globalData.token = wx.getStorageSync('token');
     }).catch(() => {
-      
+      console.log('app relogin......')
+      user.loginByWeixin()
     });
   },
   
   globalData: {
     userInfo: {
-      nickname: 'Hi,游客',
+      nickName: 'Hi,游客',
       username: '点击去登录',
-      avatar: 'http://yanxuan.nosdn.127.net/8945ae63d940cc42406c3f67019c5cb6.png'
+      avatarUrl: 'http://yanxuan.nosdn.127.net/8945ae63d940cc42406c3f67019c5cb6.png'
     },
     token: '',
   }
