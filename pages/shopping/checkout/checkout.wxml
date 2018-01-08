@@ -47,7 +47,7 @@
             </view>
             <view class="info">
                 <view class="t">
-                    <text class="name">{{item.variant.name}}</text>
+                    <text class="name">{{item.name}}</text>
                     <text class="number">x{{item.quantity}}</text>
                 </view>
                 <view class="m">{{item.goods_specifition_name_value}}</view>
@@ -57,7 +57,7 @@
     </view>
 
     <view class="order-total">
-        <view class="l">实付：￥{{actualPrice}}</view>
+        <view class="l">应付：￥{{actualPrice}}</view>
         <view class="r" bindtap="submitOrder">去付款</view>
     </view>
 </view>
