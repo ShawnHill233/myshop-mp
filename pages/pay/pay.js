@@ -33,9 +33,10 @@ Page({
   //向服务请求支付参数
   requestPayParam() {
     let that = this;
-    util.request(api.PayPrepayId, { orderId: that.data.orderId, payType: 1 }).then(function (res) {
-      if (res.errno === 0) {
-        let payParam = res.data;
+    util.request(api.ApiRootUrl + 'orders/' + this.data.orderId + '/mp_pay_params').then(function (res) {
+      console.log('pay params:', res)
+        let payParam = res.pay_params;
+        console.log("payParm:", payParam)
         wx.requestPayment({
           'timeStamp': payParam.timeStamp,
           'nonceStr': payParam.timeStamp,
@@ -44,16 +45,15 @@ Page({
           'paySign': payParam.paySign,
           'success': function (res) {
             wx.redirectTo({
-              url: '/pages/payResult/payResult?status=true',
+              url: '/pages/payResult/payResult?status=success',
             })
           },
           'fail': function (res) {
             wx.redirectTo({
-              url: '/pages/payResult/payResult?status=false',
+              url: '/pages/payResult/payResult?status=fail',
             })
           }
         })
-      }
     });
   },
   payLater() {

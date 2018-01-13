@@ -113,15 +113,16 @@ Page({
     //   return false;
     // }
     util.request(api.ApiRootUrl + 'orders', {}, 'POST').then(res => {
+      console.log('created order...', res)
       // if (res.errno === 0) {
-        // const orderId = res.data.orderInfo.id;
+        const orderId = res.number;
         // pay.payOrder(parseInt(orderId)).then(res => {
           // wx.redirectTo({
           //   url: '/pages/payResult/payResult?status=1&orderId=' + orderId
           // });
         // }).catch(res => {
           wx.redirectTo({
-            url: '/pages/pay/pay?actualPrice=' + this.data.actualPrice
+            url: '/pages/pay/pay?actualPrice=' + this.data.actualPrice + '&orderId=' + orderId
           });
         // });
       // } else {

@@ -10,12 +10,9 @@ const api = require('../config/api.js');
  */
 function payOrder(orderId) {
   return new Promise(function (resolve, reject) {
-    util.request(api.PayPrepayId, {
-      orderId: orderId
-    }).then((res) => {
+    util.request(api.ApiRootUrl + 'orders/' + orderId + '/mp_pay_params').then((res) => {
       console.log(res)
-      if (res.errno === 0) {
-        const payParam = res.data;
+      const payParam = res.pay_params;
         wx.requestPayment({
           'timeStamp': payParam.timeStamp,
           'nonceStr': payParam.nonceStr,
@@ -32,9 +29,7 @@ function payOrder(orderId) {
             reject(res);
           }
         });
-      } else {
-        reject(res);
-      }
+     
     });
   });
 }
