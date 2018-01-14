@@ -4,6 +4,7 @@
 
 const util = require('../utils/util.js');
 const api = require('../config/api.js');
+var user = require('./user.js');
 
 /**
  * 判断用户是否登录

@@ -1,6 +1,7 @@
 var app = getApp();
 var util = require('../../utils/util.js');
 var api = require('../../config/api.js');
+var user = require('../../services/user.js');
 
 Page({
   data: {
@@ -34,13 +35,12 @@ Page({
   requestPayParam() {
     let that = this;
     util.request(api.ApiRootUrl + 'orders/' + this.data.orderId + '/mp_pay_params').then(function (res) {
-      console.log('pay params:', res)
         let payParam = res.pay_params;
         console.log("payParm:", payParam)
         wx.requestPayment({
           'timeStamp': payParam.timeStamp,
-          'nonceStr': payParam.timeStamp,
-          'package': payParam.nonceStr,
+          'nonceStr': payParam.nonceStr,
+          'package': payParam.package,
           'signType': payParam.signType,
           'paySign': payParam.paySign,
           'success': function (res) {
