@@ -41,7 +41,7 @@
       </view>
     </view>
     <view class="cart-bottom">
-       <view class="checkbox {{checkedAllStatus ? 'checked' : ''}}" bindtap="checkedAll">全选({{cart.checked_count}})</view> 
+       <view class="checkbox {{checkedAllStatus ? 'checked' : ''}}" bindtap="checkedAll">全选({{cartTotal.checkedGoodsCount}})</view> 
       <view class="total">{{!isEditCart ? '￥'+ cart.checked_amount : ''}}</view>
        <view class="delete" bindtap="editCart">{{!isEditCart ? '编辑' : '完成'}}</view> 
        <view class="checkout" bindtap="deleteCart" wx:if="{{isEditCart}}">删除所选</view> 

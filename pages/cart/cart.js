@@ -29,6 +29,9 @@ Page({
   onShow: function () {
     // 页面显示
     this.getCartList();
+    this.setData({
+      isEditCart: false
+    })
   },
   onHide: function () {
     // 页面隐藏
@@ -47,9 +50,9 @@ Page({
         cart: res,
       });
 
-      // that.setData({
-      //   checkedAllStatus: that.isCheckedAll()
-      // });
+      that.setData({
+        checkedAllStatus: that.isCheckedAll()
+      });
     });
   },
   isCheckedAll: function () {
@@ -75,7 +78,8 @@ Page({
           });
 
         that.setData({
-          checkedAllStatus: that.isCheckedAll()
+          checkedAllStatus: that.isCheckedAll(),
+          'cartTotal.checkedGoodsCount': that.getCheckedGoodsCount()
         });
       });
     } else {
@@ -99,7 +103,7 @@ Page({
     let checkedGoodsCount = 0;
     this.data.cartGoods.forEach(function (v) {
       if (v.checked === true) {
-        checkedGoodsCount += v.number;
+        checkedGoodsCount += v.quantity;
       }
     });
     console.log(checkedGoodsCount);
@@ -110,7 +114,7 @@ Page({
 
     if (!this.data.isEditCart) {
       var productIds = this.data.cartGoods.map(function (v) {
-        return v.product_id;
+        return v.id;
       });
       util.request(api.ApiRootUrl + 'carts/check_all', { checked: that.isCheckedAll() ? 0 : 1 }, 'POST').then(function (res) {
           console.log(res.data);
@@ -239,17 +243,16 @@ Page({
 
     productIds = productIds.map(function (element, index, array) {
       if (element.checked == true) {
-        return element.product_id;
+        return element.id;
       }
     });
 
 
-    util.request(api.CartDelete, {
-      productIds: productIds.join(',')
+    util.request(api.ApiRootUrl + 'carts/remove', {
+      line_item_ids: productIds.join(',')
     }, 'POST').then(function (res) {
-      if (res.errno === 0) {
         console.log(res.data);
-        let cartList = res.data.cartList.map(v => {
+        let cartList = res.line_items.map(v => {
           console.log(v);
           v.checked = false;
           return v;
@@ -259,7 +262,6 @@ Page({
           cartGoods: cartList,
           cart: res
         });
-      }
 
       that.setData({
         checkedAllStatus: that.isCheckedAll()
