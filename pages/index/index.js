@@ -19,10 +19,10 @@ Page({
     floorGoods: [],
     banner: [],
     channel: [
-      { icon_url: '/static/images/detail_kefu.png', name: '四轮定位' },
-      { icon_url: '/static/images/detail_kefu.png', name: '安全驾驶' },
-      { icon_url: '/static/images/detail_kefu.png', name: '美容清洗' },
-      { icon_url: '/static/images/detail_kefu.png', name: '装饰改装' }]
+      { icon_url: '/static/images/ic_menu_wheel.png', name: '四轮定位' },
+      { icon_url: '/static/images/ic_menu_car.png', name: '安全驾驶' },
+      { icon_url: '/static/images/ic_menu_clear.png', name: '美容清洗' },
+      { icon_url: '/static/images/ic_menu_maintain.png', name: '装饰改装' }]
   },
   onShareAppMessage: function () {
     return {
