@@ -85,10 +85,10 @@
 
 
     <view class="common-problem">
-      <view class="h">
+      <!-- <view class="h">
         <view class="line"></view>
         <text class="title">常见问题</text>
-      </view>
+      </view> -->
       <view class="b">
         <view class="item" wx:for="{{issueList}}" wx:key="{{item.id}}">
           <view class="question-box">

@@ -32,7 +32,7 @@ Page({
         that.setData({
           goods: res,
           gallery: res.images,
-          // attribute: res.data.attribute,
+          attribute: res.product_properties,
           // issueList: res.data.issue,
           // comment: res.data.comment,
           // brand: res.data.brand,
