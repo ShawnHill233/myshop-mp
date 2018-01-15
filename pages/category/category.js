@@ -18,13 +18,11 @@ Page({
   onLoad: function (options) {
     // 页面初始化 options为页面跳转所带来的参数
     var that = this;
-    if (options.id) {
       that.setData({
-        id: parseInt(options.id),
         metaTitle: options.metaTitle,
         metaDescription: options.metaDescription
       });
-    }
+    console.log("metaTitle:", this.data.metaTitle)
 
     wx.getSystemInfo({
       success: function (res) {
@@ -50,17 +48,13 @@ Page({
   },
   getGoodsList: function () {
     var that = this;
-
-    util.request(api.GoodsList, { id: that.data.id, page: that.data.page, size: that.data.size })
+    var category_name = this.data.metaTitle
+    util.request(api.ApiRootUrl + 'products', { category_name: category_name })
       .then(function (res) {
-        console.log("get goods list res", res)
-        
         that.setData({
           goodsList: res.products,
         });
       });
-
-    console.log("goodsList..", that.data.goodsList)
   },
   onUnload: function () {
     // 页面关闭

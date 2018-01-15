@@ -19,10 +19,10 @@ Page({
     floorGoods: [],
     banner: [],
     channel: [
-      { icon_url: '/static/images/ic_menu_wheel.png', name: '四轮定位' },
-      { icon_url: '/static/images/ic_menu_car.png', name: '安全驾驶' },
-      { icon_url: '/static/images/ic_menu_clear.png', name: '美容清洗' },
-      { icon_url: '/static/images/ic_menu_maintain.png', name: '装饰改装' }]
+      { icon_url: '/static/images/ic_menu_wheel.png', name: '四轮定位', url: '../category/category?metaTitle=四轮定位&metaDescription=一流的设备 专业的服务' },
+      { icon_url: '/static/images/ic_menu_car.png', name: '安全驾驶', url: '../category/category?metaTitle=安全驾驶&metaDescription=一人出车全家念 一人平安全家福' },
+      { icon_url: '/static/images/ic_menu_clear.png', name: '美容清洗', url: '../category/category?metaTitle=美容清洗&metaDescription=一流的设备 专业的服务' },
+      { icon_url: '/static/images/ic_menu_maintain.png', name: '装饰改装', url: '../category/category?metaTitle=装饰改装&metaDescription=品味生活 品味车趣' }]
   },
   onShareAppMessage: function () {
     return {
