@@ -35,7 +35,7 @@ Page({
   payOrder() {
     pay.payOrder(parseInt(this.data.orderId)).then(res => {
       this.setData({
-        status: true
+        status: 'success'
       });
     }).catch(res => {
       util.showErrorToast('支付失败');

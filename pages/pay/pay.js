@@ -50,7 +50,7 @@ Page({
           },
           'fail': function (res) {
             wx.redirectTo({
-              url: '/pages/payResult/payResult?status=fail',
+              url: '/pages/payResult/payResult?status=fail&orderId=' + that.data.orderId,
             })
           }
         })
