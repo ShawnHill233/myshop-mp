@@ -1,25 +1,36 @@
 <view class="container">
   <view class="coupon-box">
-    
     <view class="coupon-item">
       <view class="l">
         <text class="name">司晓翰</text>
-        
+        <!-- <view wx:if="{{mobile.length > 0}}">
+        <text class="txt">13076016866</text>
+        </view>
+        <view wx:else> -->
+        <text class='txt'>填写手机号</text>
+        <!-- </view> -->
       </view>
-      <view class='r'>
-        <text class="txt">13076016866</text>  
+      <view class="r">
+         <image src="/static/images/address_right.png"></image> 
       </view>
-      
     </view>
   </view>
 
   <view class="order-box">
-   <view class="order-item ">
+    <view class="order-item ">
       <view class="l">
         <text class="name">安装配送方式</text>
       </view>
       <view class="r">
-        <text class="txt">门店安装</text>
+        <text class="txt address">门店安装</text>
+      </view>
+    </view>
+    <view class="order-item ">
+      <view class="l">
+        <text class="name">门店地址</text>
+      </view>
+      <view class="r">
+        <text class="txt address">平昌县大身镇东舍坊街22号</text>
       </view>
     </view>
     <view class="order-item no-border">
@@ -30,7 +41,7 @@
         <text class="txt">￥{{actualPrice}}</text>
       </view>
     </view>
-   
+
     <!-- <view class="order-item">
             <view class="l">
                 <text class="name">运费</text>
