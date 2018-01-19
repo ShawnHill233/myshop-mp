@@ -35,7 +35,7 @@ function request(url, data = {}, method = "GET") {
         console.log("success");
 
         if (res.statusCode == 200) {
-          resolve(res.data);
+          resolve(res);
         } else if (res.statusCode == 401) {
           //需要登录后才可以操作
           console.log("relogin.....")

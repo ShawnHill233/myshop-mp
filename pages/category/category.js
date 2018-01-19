@@ -52,7 +52,7 @@ Page({
     util.request(api.ApiRootUrl + 'products', { category_name: category_name })
       .then(function (res) {
         that.setData({
-          goodsList: res.products,
+          goodsList: res.data.products,
         });
       });
   },

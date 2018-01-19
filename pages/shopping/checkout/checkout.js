@@ -27,8 +27,8 @@ Page({
     util.request(api.ApiRootUrl + 'carts').then(function (res) {
       console.log('carts...', res);
       that.setData({
-        checkedGoodsList: res.line_items,
-        actualPrice: res.checked_amount,
+        checkedGoodsList: res.data.line_items,
+        actualPrice: res.data.checked_amount,
         // orderNumber: res.number
       });
 
@@ -37,13 +37,6 @@ Page({
       // });
     });
    
-    util.request(api.ApiRootUrl + 'users/info').then(function(res){
-      that.setData({
-        name: res.name.length > 0 ? res.name : wx.getStorageSync('userInfo').nickName,
-        mobile: res.mobile
-      })
-    })
-
   },
   getCheckoutInfo: function () {
     wx.hideLoading();
@@ -68,7 +61,13 @@ Page({
       title: '加载中...',
     })
     this.getCheckoutInfo();
-
+    let that = this
+    util.request(api.ApiRootUrl + 'users/info').then(function (res) {
+      that.setData({
+        name: res.data.name.length > 0 ? res.data.name : wx.getStorageSync('userInfo').nickName,
+        mobile: res.data.mobile
+      })
+    })
   },
   onHide: function () {
     // 页面隐藏
@@ -90,7 +89,7 @@ Page({
     util.request(api.ApiRootUrl + 'orders', {}, 'POST').then(res => {
       console.log('created order...', res)
       // if (res.errno === 0) {
-        const orderId = res.number;
+        const orderId = res.data.number;
         // pay.payOrder(parseInt(orderId)).then(res => {
           // wx.redirectTo({
           //   url: '/pages/payResult/payResult?status=1&orderId=' + orderId

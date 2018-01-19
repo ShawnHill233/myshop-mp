@@ -13,7 +13,7 @@ function payOrder(orderId) {
   return new Promise(function (resolve, reject) {
     util.request(api.ApiRootUrl + 'orders/' + orderId + '/mp_pay_params').then((res) => {
       console.log(res)
-      const payParam = res.pay_params;
+      const payParam = res.data.pay_params;
         wx.requestPayment({
           'timeStamp': payParam.timeStamp,
           'nonceStr': payParam.nonceStr,

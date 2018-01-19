@@ -41,9 +41,9 @@ Page({
         // topics: res.data.topicList,
         // brand: res.data.brandList,
         // floorGoods: res.data.categoryList,
-        banner: res.banners,
-        tireBrands: res.tire_brands,
-        clearBrands: res.clear_brands,
+        banner: res.data.banners,
+        tireBrands: res.data.tire_brands,
+        clearBrands: res.data.clear_brands,
         // channel: res.data.channel
       });
       console.log("banner..", that.data.banner)

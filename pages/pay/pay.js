@@ -35,7 +35,7 @@ Page({
   requestPayParam() {
     let that = this;
     util.request(api.ApiRootUrl + 'orders/' + this.data.orderId + '/mp_pay_params').then(function (res) {
-        let payParam = res.pay_params;
+        let payParam = res.data.pay_params;
         console.log("payParm:", payParam)
         wx.requestPayment({
           'timeStamp': payParam.timeStamp,

@@ -30,9 +30,9 @@ Page({
       console.log("goods res...", res)
       
         that.setData({
-          goods: res,
-          gallery: res.images,
-          attribute: res.product_properties,
+          goods: res.data,
+          gallery: res.data.images,
+          attribute: res.data.product_properties,
           // issueList: res.data.issue,
           // comment: res.data.comment,
           // brand: res.data.brand,
@@ -279,7 +279,7 @@ Page({
             });
             that.setData({
               // openAttr: !that.data.openAttr,
-              cartGoodsCount: _res.items_count
+              cartGoodsCount: _res.data.items_count
             });
             if (that.data.userHasCollect == 1) {
               that.setData({

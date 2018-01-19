@@ -46,8 +46,8 @@ Page({
     util.request(api.ApiRootUrl + 'carts').then(function (res) {
       console.log('carts...', res);
       that.setData({
-        cartGoods: res.line_items,
-        cart: res,
+        cartGoods: res.data.line_items,
+        cart: res.data,
       });
 
       that.setData({
@@ -73,8 +73,8 @@ Page({
       util.request(api.ApiRootUrl + 'carts/check', { line_item_id: that.data.cartGoods[itemIndex].id, checked: that.data.cartGoods[itemIndex].checked ? 0 : 1 }, 'POST').then(function (res) {
           console.log(res.data);
           that.setData({
-            cartGoods: res.line_items,
-            cart: res
+            cartGoods: res.data.line_items,
+            cart: res.data
           });
 
         that.setData({
@@ -119,8 +119,8 @@ Page({
       util.request(api.ApiRootUrl + 'carts/check_all', { checked: that.isCheckedAll() ? 0 : 1 }, 'POST').then(function (res) {
           console.log(res.data);
           that.setData({
-            cartGoods: res.line_items,
-            cart: res
+            cartGoods: res.data.line_items,
+            cart: res.data
           });
 
         that.setData({
@@ -174,8 +174,8 @@ Page({
     }, 'POST').then(function (res) {
         console.log(res.data);
         that.setData({
-          cartGoods: res.line_items,
-          cart: res
+          cartGoods: res.data.line_items,
+          cart: res.data
         });
 
       that.setData({
@@ -252,7 +252,7 @@ Page({
       line_item_ids: productIds.join(',')
     }, 'POST').then(function (res) {
         console.log(res.data);
-        let cartList = res.line_items.map(v => {
+        let cartList = res.data.line_items.map(v => {
           console.log(v);
           v.checked = false;
           return v;
@@ -260,7 +260,7 @@ Page({
 
         that.setData({
           cartGoods: cartList,
-          cart: res
+          cart: res.data
         });
 
       that.setData({

@@ -11,8 +11,8 @@ Page({
     let that = this
     util.request(api.ApiRootUrl + 'users/info').then(function (res) {
       that.setData({
-        name: res.name,
-        mobile: res.mobile
+        name: res.data.name,
+        mobile: res.data.mobile
       });
     });
 

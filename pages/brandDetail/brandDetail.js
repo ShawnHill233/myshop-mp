@@ -37,7 +37,7 @@ Page({
         console.log("get goods list res", res)
 
         that.setData({
-          goodsList: res.products,
+          goodsList: res.data.products,
         });
       });
     console.log("goodsList..", that.data.goodsList)

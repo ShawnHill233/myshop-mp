@@ -15,7 +15,7 @@ Page({
     util.request(api.ApiRootUrl + 'orders').then(function (res) {
       console.log(res);
       that.setData({
-        orderList: res.orders
+        orderList: res.data.orders
       });
     });
   },
