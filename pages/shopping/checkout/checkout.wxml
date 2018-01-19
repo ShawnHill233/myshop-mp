@@ -2,16 +2,18 @@
   <view class="coupon-box">
     <view class="coupon-item">
       <view class="l">
-        <text class="name">司晓翰</text>
-        <!-- <view wx:if="{{mobile.length > 0}}">
-        <text class="txt">13076016866</text>
+        <text class="name">{{name}}</text>
+        <view wx:if="{{mobile.length > 0}}">
+          <text class="txt">{{mobile}}</text>
         </view>
-        <view wx:else> -->
-        <text class='txt'>填写手机号</text>
-        <!-- </view> -->
+        <view wx:else>
+        <navigator url='/pages/ucenter/info/info'>
+          <text class='txt'>填写手机号</text>
+        </navigator>
+        </view>
       </view>
       <view class="r">
-         <image src="/static/images/address_right.png"></image> 
+        <image src="/static/images/address_right.png"></image>
       </view>
     </view>
   </view>

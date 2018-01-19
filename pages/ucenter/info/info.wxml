@@ -1,0 +1,16 @@
+<form bindsubmit="saveInfo">
+<view class="add-address">
+    <view class="add-form">
+        <view class="form-item">
+            <input class="input" name='name' placeholder="姓名" value="{{name}}" auto-focus/>
+        </view>
+        <view class="form-item">
+            <input class="input" name='mobile' type='number' value="{{mobile}}" placeholder="手机号码" maxlength='11'/>
+        </view>
+    </view>
+
+    <view class="btns">
+        <button class="save" formType="submit">保存</button>
+    </view>
+</view>
+</form>

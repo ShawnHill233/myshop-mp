@@ -1,16 +1,13 @@
 {
   "pages": [
     "pages/index/index",
-    
+    "pages/ucenter/info/info",
     "pages/category/category",
-    
     "pages/search/search",
-    
     "pages/catalog/catalog",
     "pages/newGoods/newGoods",
     "pages/hotGoods/hotGoods",
     "pages/ucenter/address/address",
-    "pages/ucenter/addressAdd/addressAdd",
     "pages/ucenter/footprint/footprint",
     "pages/ucenter/order/order",
     "pages/ucenter/orderDetail/orderDetail",

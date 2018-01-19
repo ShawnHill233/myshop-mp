@@ -15,7 +15,7 @@
       </navigator>
     </view>
     <view class="item">
-      <navigator url="../addressAdd/addressAdd" class="a">
+      <navigator url="../info/info" class="a">
         <text class="icon address"></text>
         <text class="txt">个人信息</text>
       </navigator>

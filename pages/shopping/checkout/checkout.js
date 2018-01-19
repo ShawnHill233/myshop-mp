@@ -6,6 +6,8 @@ var app = getApp();
 
 Page({
   data: {
+    name: '',
+    mobile: '',
     checkedGoodsList: [],
     checkedAddress: {},
     checkedCoupon: [],
@@ -21,26 +23,6 @@ Page({
     orderNumber: ''
   },
   onLoad: function (options) {
-
-    // 页面初始化 options为页面跳转所带来的参数
-
-    // try {
-    //   var addressId = wx.getStorageSync('addressId');
-    //   if (addressId) {
-    //     this.setData({
-    //       'addressId': addressId
-    //     });
-    //   }
-
-    //   var couponId = wx.getStorageSync('couponId');
-    //   if (couponId) {
-    //     this.setData({
-    //       'couponId': couponId
-    //     });
-    //   }
-    // } catch (e) {
-    //   // Do something when catch error
-    // }
     let that = this;
     util.request(api.ApiRootUrl + 'carts').then(function (res) {
       console.log('carts...', res);
@@ -54,27 +36,16 @@ Page({
       //   checkedAllStatus: that.isCheckedAll()
       // });
     });
+   
+    util.request(api.ApiRootUrl + 'users/info').then(function(res){
+      that.setData({
+        name: res.name.length > 0 ? res.name : wx.getStorageSync('userInfo').nickName,
+        mobile: res.mobile
+      })
+    })
 
   },
   getCheckoutInfo: function () {
-    // let that = this;
-    // util.request(api.CartCheckout, { addressId: that.data.addressId, couponId: that.data.couponId }).then(function (res) {
-    //   if (res.errno === 0) {
-    //     console.log(res.data);
-    //     that.setData({
-    //       checkedGoodsList: res.data.checkedGoodsList,
-    //       checkedAddress: res.data.checkedAddress,
-    //       actualPrice: res.data.actualPrice,
-    //       checkedCoupon: res.data.checkedCoupon,
-    //       couponList: res.data.couponList,
-    //       couponPrice: res.data.couponPrice,
-    //       freightPrice: res.data.freightPrice,
-    //       goodsTotalPrice: res.data.goodsTotalPrice,
-    //       orderTotalPrice: res.data.orderTotalPrice
-    //     });
-    //   }
-    //   wx.hideLoading();
-    // });
     wx.hideLoading();
   },
   selectAddress() {
@@ -112,6 +83,10 @@ Page({
     //   util.showErrorToast('请选择收货地址');
     //   return false;
     // }
+    if(this.data.mobile.length == 0){
+      util.showErrorToast('请填写手机号');
+      return false;
+    }
     util.request(api.ApiRootUrl + 'orders', {}, 'POST').then(res => {
       console.log('created order...', res)
       // if (res.errno === 0) {
