@@ -11,7 +11,7 @@ Page({
     let that = this
     util.request(api.ApiRootUrl + 'users/info').then(function (res) {
       that.setData({
-        name: res.data.name,
+        name: res.data.name ? res.data.name : wx.getStorageSync('userInfo').nickName,
         mobile: res.data.mobile
       });
     });
