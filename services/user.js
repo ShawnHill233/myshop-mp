@@ -21,10 +21,10 @@ function loginByWeixin() {
       wx.setStorageSync('userInfo', res.userInfo);
       //登录远程服务器
       util.request(api.ApiRootUrl + 'users/login', { code: code }, 'POST').then(res => {
-        if (res.token) {
+        if (res.data.token) {
           //存储用户信息
           // wx.setStorageSync('userInfo', res.data.userInfo);
-          wx.setStorageSync('token', res.token);
+          wx.setStorageSync('token', res.data.token);
 
           resolve(res);
         } else {
