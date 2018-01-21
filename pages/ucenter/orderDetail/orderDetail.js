@@ -19,7 +19,7 @@ Page({
   getOrderDetail() {
     let that = this;
     util.request(api.ApiRootUrl + 'orders/' + that.data.orderId).then(function (res) {
-        console.log(res.data);
+        console.log('order detail...', res.data);
         that.setData({
           order: res.data,
           orderGoods: res.data.line_items,
@@ -60,7 +60,6 @@ Page({
   cancelOrder: function(){
     let that = this;
     util.request(api.ApiRootUrl + 'orders/' + that.data.orderId + '/cancel', {}, 'POST').then(function (res) {
-      console.log(res.data);
       that.setData({
         order: res.data,
       });
