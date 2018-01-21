@@ -24,7 +24,7 @@ Page({
     let that = this;
     util.request(api.ApiRootUrl + 'brands/' + that.data.id).then(function (res) {
       that.setData({
-        brand: res
+        brand: res.data
       });
       that.getGoodsList();
     });
