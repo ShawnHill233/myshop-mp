@@ -21,8 +21,8 @@ Page({
     util.request(api.ApiRootUrl + 'orders/' + that.data.orderId).then(function (res) {
         console.log(res.data);
         that.setData({
-          order: res,
-          orderGoods: res.line_items,
+          order: res.data,
+          orderGoods: res.data.line_items,
           // handleOption: res.data.handleOption
         });
         //that.payTimer();
@@ -62,7 +62,7 @@ Page({
     util.request(api.ApiRootUrl + 'orders/' + that.data.orderId + '/cancel', {}, 'POST').then(function (res) {
       console.log(res.data);
       that.setData({
-        order: res,
+        order: res.data,
       });
     });
   }
