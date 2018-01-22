@@ -10,6 +10,7 @@ Page({
     defaultKeyword: {},
     page: 1,
     size: 20,
+    totalPages: 1
   },
   //事件处理函数
   closeSearch: function () {
@@ -27,19 +28,36 @@ Page({
 
   getGoodsList: function () {
     let that = this;
-    util.request(api.ApiRootUrl + 'products', { keyword: that.data.keyword, page: that.data.page, size: that.data.size }).then(function (res) {
+    util.request(api.ApiRootUrl + 'products', { keyword: that.data.keyword, page: that.data.page, per_page: that.data.size }).then(function (res) {
 
-        console.log("products...", res.data.products)
         that.setData({
           searchStatus: true,
           categoryFilter: false,
           goodsList: res.data.products,
-          page: res.data.currentPage,
-          size: res.data.numsPerPage
+          page: res.header['X-Page'],
+          size: res.header['X-Per-Page'],
+          totalPages: Number(res.header['X-Total-Pages'])
         });
       
     });
   },
+
+  loadMore: function () {
+    let that = this;
+    util.request(api.ApiRootUrl + 'products', { keyword: that.data.keyword, page: that.data.page, per_page: that.data.size }).then(function (res) {
+      that.setData({
+        searchStatus: true,
+        categoryFilter: false,
+        goodsList: that.data.goodsList.concat(res.data.products),
+        page: res.header['X-Page'],
+        size: res.header['X-Per-Page'],
+        totalPages: Number(res.header['X-Total-Pages'])
+      });
+
+    });
+  },
+  
+
   onKeywordTap: function (event) {
 
     this.getSearchResult(event.target.dataset.keyword);
@@ -57,5 +75,16 @@ Page({
   
   onKeywordConfirm(event) {
     this.getSearchResult(event.detail.value);
-  }
+  },
+  onReachBottom() {
+    if (this.data.totalPages > this.data.page) {
+      this.setData({
+        page: Number(this.data.page) + 1
+      });
+    } else {
+      return false;
+    }
+
+    this.loadMore();
+  },
 })

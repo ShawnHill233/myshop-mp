@@ -53,6 +53,23 @@ Page({
       .then(function (res) {
         that.setData({
           goodsList: res.data.products,
+          page: res.header['X-Page'],
+          size: res.header['X-Per-Page'],
+          totalPages: Number(res.header['X-Total-Pages'])
+        });
+      });
+  },
+
+  loadMore: function(){
+    var that = this;
+    var category_name = this.data.metaTitle
+    util.request(api.ApiRootUrl + 'products', { category_name: category_name })
+      .then(function (res) {
+        that.setData({
+          goodsList: that.data.goodsList.concat(res.data.products),
+          page: res.header['X-Page'],
+          size: res.header['X-Per-Page'],
+          totalPages: Number(res.header['X-Total-Pages'])
         });
       });
   },
@@ -80,5 +97,17 @@ Page({
     });
 
     this.getCategoryInfo();
-  }
+  },
+
+  onReachBottom() {
+    if (this.data.totalPages > this.data.page) {
+      this.setData({
+        page: Number(this.data.page) + 1
+      });
+    } else {
+      return false;
+    }
+
+    this.loadMore();
+  },
 })
