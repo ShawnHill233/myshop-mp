@@ -30,5 +30,21 @@ Page({
   },
   onUnload: function () {
     // 页面关闭
+  },
+  feedbackSubmit: function(e){
+    console.log(this.data.array[this.data.index])
+    console.log('form发生了submit事件，携带数据为：', e.detail.value)
+    let cate = this.data.array[this.data.index]
+    let content = e.detail.value.content
+    let mobile = e.detail.value.mobile
+    util.request(api.ApiRootUrl + 'feedback', {cate: cate, content: content, mobile: mobile}, 'POST').then(function (res) {
+      wx.navigateBack()
+      wx.showToast({
+        title: '谢谢你的建议',
+        icon: 'success',
+        duration: 2000
+      });
+    });
+    
   }
 })

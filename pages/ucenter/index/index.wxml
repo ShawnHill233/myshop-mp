@@ -8,14 +8,14 @@
   </view>
 
   <view class="user-menu">
-    <view class="item">
+    <view class="item item-bottom">
       <navigator url="/pages/ucenter/order/order" class="a">
         <text class="icon order"></text>
         <text class="txt">我的订单</text>
       </navigator>
     </view>
-    <view class="item">
-      <navigator url="../info/info" class="a">
+    <view class="item item-bottom">
+      <navigator url="/pages/ucenter/info/info" class="a">
         <text class="icon address"></text>
         <text class="txt">个人信息</text>
       </navigator>
