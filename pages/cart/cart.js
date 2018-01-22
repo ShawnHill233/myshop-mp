@@ -48,6 +48,7 @@ Page({
       that.setData({
         cartGoods: res.data.line_items,
         cart: res.data,
+        'cartTotal.checkedGoodsCount': res.data.checked_count
       });
 
       that.setData({
@@ -74,7 +75,7 @@ Page({
           console.log(res.data);
           that.setData({
             cartGoods: res.data.line_items,
-            cart: res.data
+            cart: res.data,
           });
 
         that.setData({
@@ -120,7 +121,8 @@ Page({
           console.log(res.data);
           that.setData({
             cartGoods: res.data.line_items,
-            cart: res.data
+            cart: res.data,
+            'cartTotal.checkedGoodsCount': res.data.checked_count
           });
 
         that.setData({

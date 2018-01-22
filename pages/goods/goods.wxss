@@ -510,6 +510,7 @@
     width: 750rpx;
     height: 100rpx;
     display: flex;
+    display: -webkit-flex; 
     background: #fff;
 }
 

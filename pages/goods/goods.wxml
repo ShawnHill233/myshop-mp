@@ -85,10 +85,10 @@
 
 
     <view class="common-problem">
-      <!-- <view class="h">
-        <view class="line"></view>
-        <text class="title">常见问题</text>
-      </view> -->
+       <view class="h">
+        <!-- <view class="line"></view> -->
+        <!-- <text class="title">常见问题</text> -->
+      </view> 
       <view class="b">
         <view class="item" wx:for="{{issueList}}" wx:key="{{item.id}}">
           <view class="question-box">
@@ -147,7 +147,9 @@
       </view>
     </view>
   </view>
-  <view class="bottom-btn">
+</scroll-view>
+
+<view class="bottom-btn">
     <view class="l l-collect {{ openAttr ? 'back' : ''}}" bindtap="closeAttrOrCollect">
       <image class="icon" src="{{ collectBackImage }}"></image>
     </view>
@@ -161,4 +163,3 @@
     <view class="c">立即购买</view>
     <view class="r" bindtap="addToCart">加入购物车</view>
   </view>
-</scroll-view>
