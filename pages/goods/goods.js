@@ -184,13 +184,10 @@ Page({
     });
     var that = this;
     this.getGoodsInfo();
-    util.request(api.CartGoodsCount).then(function (res) {
-      if (res.errno === 0) {
+    util.request(api.ApiRootUrl + 'carts').then(function (res) {
         that.setData({
-          cartGoodsCount: res.data.cartTotal.goodsCount
+          cartGoodsCount: res.data.items_count
         });
-
-      }
     });
   },
   onReady: function () {
