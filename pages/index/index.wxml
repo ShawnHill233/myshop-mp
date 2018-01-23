@@ -20,6 +20,12 @@
       <text>{{item.name}}</text>
     </navigator>
   </view>
+  <view class="m-menu">
+    <navigator  class="item" url="{{item.url}}" wx:for="{{channel_line2}}" wx:key="{{item.id}}">
+      <image src="{{item.icon_url}}" background-size="cover"></image>
+      <text>{{item.name}}</text>
+    </navigator>
+  </view>
   <view class="a-section a-brand">
     <view class="h">
       <navigator url="">

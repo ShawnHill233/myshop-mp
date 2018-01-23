@@ -19,10 +19,15 @@ Page({
     floorGoods: [],
     banner: [],
     channel: [
-      { icon_url: '/static/images/ic_menu_wheel.png', name: '四轮定位', url: '../category/category?metaTitle=四轮定位&metaDescription=一流的设备 专业的服务' },
-      { icon_url: '/static/images/ic_menu_car.png', name: '安全驾驶', url: '../category/category?metaTitle=安全驾驶&metaDescription=一人出车全家念 一人平安全家福' },
-      { icon_url: '/static/images/ic_menu_clear.png', name: '美容清洗', url: '../category/category?metaTitle=美容清洗&metaDescription=一流的设备 专业的服务' },
-      { icon_url: '/static/images/ic_menu_maintain.png', name: '装饰改装', url: '../category/category?metaTitle=装饰改装&metaDescription=品味生活 品味车趣' }]
+      { icon_url: '/static/images/ic_menu_wheel.png', name: '四轮定位', url: '../category/category?metaTitle=四轮定位&metaDescription=一流设备 专业服务' },
+      { icon_url: '/static/images/ic_menu_car.png', name: '安全自驾', url: '../category/category?metaTitle=安全自驾&metaDescription=一人出车全家念 一人平安全家福' },
+      { icon_url: '/static/images/ic_menu_clear.png', name: '美容清洗', url: '../category/category?metaTitle=美容清洗&metaDescription=一流设备 专业服务' },
+      { icon_url: '/static/images/ic_menu_maintain.png', name: '装饰改装', url: '../category/category?metaTitle=装饰改装&metaDescription=品味生活 品味车趣' }],
+    channel_line2: [
+      { icon_url: '/static/images/ic_menu_dianping.png', name: '电瓶', url: '../category/category?metaTitle=电瓶&metaDescription=' },
+      { icon_url: '/static/images/ic_menu_weixiu.png', name: '维修', url: '../category/category?metaTitle=维修&metaDescription=' },
+      { icon_url: '/static/images/ic_menu_fuwu.png', name: '车主服务', url: '../category/category?metaTitle=车主服务&metaDescription=' },
+      { icon_url: '/static/images/ic_menu_mendian.png', name: '门店', url: '../category/category?metaTitle=门店&metaDescription=' }]
   },
   onShareAppMessage: function () {
     return {
