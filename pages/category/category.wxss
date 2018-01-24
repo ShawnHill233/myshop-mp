@@ -86,6 +86,10 @@
   text-align: center;
 }
 
+:nth-child(2n+1) {
+    clear: left;
+}
+
 .cate-item .b .item-b{
   margin-left: 6.25rpx;
 }
@@ -98,7 +102,7 @@
 .cate-item .item .name{
   display: block;
   width: 365.625rpx;
-  height: 35rpx;
+  min-height: 38rpx;
   margin: 11.5rpx 0 22rpx 0;
   text-align: center;
   overflow: hidden;

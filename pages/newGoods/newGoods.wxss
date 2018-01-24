@@ -145,6 +145,10 @@ page{
   text-align: center;
 }
 
+:nth-child(2n+1) {
+    clear: left;
+}
+
 .cate-item .b .item-b{
  border-right: 1rpx solid #f4f4f4;
 }
@@ -158,7 +162,7 @@ page{
 .cate-item .item .name{
   display: block;
   width: 365.625rpx;
-  height: 35rpx;
+  min-height: 38rpx;
   padding: 0 20rpx;
   overflow: hidden;
   margin: 11.5rpx 0 22rpx 0;
