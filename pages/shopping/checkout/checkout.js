@@ -24,18 +24,28 @@ Page({
   },
   onLoad: function (options) {
     let that = this;
-    util.request(api.ApiRootUrl + 'carts').then(function (res) {
-      console.log('carts...', res);
-      that.setData({
-        checkedGoodsList: res.data.line_items,
-        actualPrice: res.data.checked_amount,
-        // orderNumber: res.number
-      });
+    if(options.type == 'buyNow'){
+      util.request(api.ApiRootUrl + 'checkout', { variant_id: options.variantId, quantity: options.quantity}, 'POST').then(function(res){
+        console.log('item.........', res)
+        that.setData({
+          checkedGoodsList: [res.data.line_item],
+          actualPrice: res.data.checked_amount,
+        });
+      })
+    }else{
+      util.request(api.ApiRootUrl + 'carts').then(function (res) {
+        console.log('carts...', res);
+        that.setData({
+          checkedGoodsList: res.data.line_items,
+          actualPrice: res.data.checked_amount,
+          // orderNumber: res.number
+        });
 
-      // that.setData({
-      //   checkedAllStatus: that.isCheckedAll()
-      // });
-    });
+        // that.setData({
+        //   checkedAllStatus: that.isCheckedAll()
+        // });
+      });
+    }
    
   },
   getCheckoutInfo: function () {

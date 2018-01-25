@@ -308,5 +308,11 @@ Page({
     this.setData({
       number: this.data.number + 1
     });
+  },
+
+  buyNow: function(){
+    wx.navigateTo({
+      url: '../shopping/checkout/checkout?type=buyNow&variantId=' +  this.data.goods.id + '&quantity=' + this.data.number
+    })
   }
 })
