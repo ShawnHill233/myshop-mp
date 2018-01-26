@@ -19,8 +19,11 @@ Page({
     actualPrice: 0.00,     //实际需要支付的总价
     addressId: 0,
     couponId: 0,
+    checkoutType: '',
 
-    orderNumber: ''
+    orderNumber: '',
+    variantId: 0,
+    quantity: 0
   },
   onLoad: function (options) {
     let that = this;
@@ -30,6 +33,9 @@ Page({
         that.setData({
           checkedGoodsList: [res.data.line_item],
           actualPrice: res.data.checked_amount,
+          checkoutType: 'buyNow',
+          variantId: Number(options.variantId),
+          quantity: Number(options.quantity)
         });
       })
     }else{
@@ -93,26 +99,37 @@ Page({
     //   util.showErrorToast('请选择收货地址');
     //   return false;
     // }
-    if(this.data.mobile.length == 0){
+    let that = this;
+    if(that.data.mobile.length == 0){
       util.showErrorToast('请填写手机号');
       return false;
     }
-    util.request(api.ApiRootUrl + 'orders', {}, 'POST').then(res => {
-      console.log('created order...', res)
-      // if (res.errno === 0) {
+    if(that.data.checkoutType == 'buyNow'){
+      util.request(api.ApiRootUrl + 'orders/buy_now', { variant_id:that.data.variantId, quantity: that.data.quantity}, 'POST').then(function(res){
+        const orderId = res.data.number;
+        wx.redirectTo({
+          url: '/pages/pay/pay?actualPrice=' + that.data.actualPrice + '&orderId=' + orderId
+        });
+      })
+    }else{
+      util.request(api.ApiRootUrl + 'orders', {}, 'POST').then(res => {
+        console.log('created order...', res)
+        // if (res.errno === 0) {
         const orderId = res.data.number;
         // pay.payOrder(parseInt(orderId)).then(res => {
-          // wx.redirectTo({
-          //   url: '/pages/payResult/payResult?status=1&orderId=' + orderId
-          // });
-        // }).catch(res => {
-          wx.redirectTo({
-            url: '/pages/pay/pay?actualPrice=' + this.data.actualPrice + '&orderId=' + orderId
-          });
+        // wx.redirectTo({
+        //   url: '/pages/payResult/payResult?status=1&orderId=' + orderId
         // });
-      // } else {
-      //   util.showErrorToast('下单失败');
-      // }
-    });
+        // }).catch(res => {
+        wx.redirectTo({
+          url: '/pages/pay/pay?actualPrice=' + that.data.actualPrice + '&orderId=' + orderId
+        });
+        // });
+        // } else {
+        //   util.showErrorToast('下单失败');
+        // }
+      });
+    }
+   
   }
 })

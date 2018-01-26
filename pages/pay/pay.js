@@ -60,7 +60,7 @@ Page({
     let that = this;
     util.request(api.ApiRootUrl + 'orders/' + this.data.orderId + '/delay_pay', {}, 'POST').then(function (res) {
         wx.redirectTo({
-          url: '/pages/payResult/payResult?status=success',
+          url: '/pages/payResult/payResult?status=delay',
         })
     });
   },

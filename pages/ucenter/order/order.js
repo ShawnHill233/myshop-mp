@@ -19,9 +19,12 @@ Page({
       });
     });
   },
-  payOrder() {
+  payOrder(e) {
+    console.log("form data....",e.target)
+    let orderId = e.target.dataset.orderId
+    let actualPrice = e.target.dataset.paymentTotal
     wx.redirectTo({
-      url: '/pages/pay/pay',
+      url: '/pages/pay/pay?actualPrice=' + actualPrice + '&orderId=' + orderId,
     })
   },
   onReady: function () {

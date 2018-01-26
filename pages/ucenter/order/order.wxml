@@ -18,7 +18,7 @@
             <view class="b">
                 <view class="l">{{item.may_payment ? '应付：' :'实付：'}}￥{{item.payment_total}}</view>
                 <view class="r">
-                    <button class="btn" data-order-index="{{index}}" catchtap="payOrder" wx:if="{{item.may_payment}}">去付款</button>
+                    <button class="btn" data-order-id="{{item.number}}" data-payment-total="{{item.payment_total}}" catchtap="payOrder" wx:if="{{item.may_payment && item.payment_state != '到店支付'}}">去付款</button>
                 </view>
             </view>
         </navigator>

@@ -7,6 +7,13 @@
         <navigator class="btn" url="/pages/index/index" open-type="switchTab">继续逛</navigator>
       </view>
     </view>
+    <view class="success" wx:if="{{status == 'delay'}}">
+      <view class="msg">下单成功</view>
+      <view class="btns">
+        <navigator class="btn" url="/pages/ucenter/order/order" open-type="redirect">查看订单</navigator>
+        <navigator class="btn" url="/pages/index/index" open-type="switchTab">继续逛</navigator>
+      </view>
+    </view>
     <view class="error" wx:if="{{status == 'fail'}}">
       <view class="msg">付款失败</view>
       <view class="tips">
