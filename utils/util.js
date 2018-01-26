@@ -22,6 +22,10 @@ function formatNumber(n) {
  * 封封微信的的request
  */
 function request(url, data = {}, method = "GET") {
+  wx.showLoading({
+    title: '加载中',
+    mask: true
+  })
   return new Promise(function (resolve, reject) {
     wx.request({
       url: url,
@@ -31,6 +35,7 @@ function request(url, data = {}, method = "GET") {
         'X-Auth-Token': wx.getStorageSync('token')
       },
       success: function (res) {
+        wx.hideLoading()
         console.log(res)
         console.log("success");
 
@@ -69,6 +74,7 @@ function request(url, data = {}, method = "GET") {
 
       },
       fail: function (err) {
+        wx.hideLoading()
         reject(err)
         console.log("failed")
       }
