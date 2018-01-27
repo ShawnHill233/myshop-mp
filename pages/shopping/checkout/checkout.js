@@ -100,7 +100,7 @@ Page({
     //   return false;
     // }
     let that = this;
-    if(that.data.mobile.length == 0){
+    if(!that.data.mobile){
       util.showErrorToast('请填写手机号');
       return false;
     }
