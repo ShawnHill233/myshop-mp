@@ -13,7 +13,7 @@ Page({
     scrollTop: 0,
     scrollHeight: 0,
     page: 1,
-    size: 10000
+    size: 20
   },
   onLoad: function (options) {
     // 页面初始化 options为页面跳转所带来的参数
@@ -49,7 +49,7 @@ Page({
   getGoodsList: function () {
     var that = this;
     var category_name = this.data.metaTitle
-    util.request(api.ApiRootUrl + 'products', { category_name: category_name })
+    util.request(api.ApiRootUrl + 'products', { category_name: category_name, per_page: that.data.size })
       .then(function (res) {
         that.setData({
           goodsList: res.data.products,
@@ -63,7 +63,7 @@ Page({
   loadMore: function(){
     var that = this;
     var category_name = this.data.metaTitle
-    util.request(api.ApiRootUrl + 'products', { category_name: category_name })
+    util.request(api.ApiRootUrl + 'products', { category_name: category_name, per_page: that.data.size })
       .then(function (res) {
         that.setData({
           goodsList: that.data.goodsList.concat(res.data.products),

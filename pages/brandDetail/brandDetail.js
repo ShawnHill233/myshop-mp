@@ -33,17 +33,20 @@ Page({
   getGoodsList() {
     var that = this;
 
-    util.request(api.ApiRootUrl + 'products', { brand_id: that.data.id, page: that.data.page, size: that.data.size })
+    util.request(api.ApiRootUrl + 'products', { brand_id: that.data.id, page: that.data.page, per_page: that.data.size })
       .then(function (res) {
         that.setData({
           goodsList: res.data.products,
+          page: res.header['X-Page'],
+          size: res.header['X-Per-Page'],
+          totalPages: Number(res.header['X-Total-Pages'])
         });
       });
   },
 
   loadMore() {
     var that = this;
-    util.request(api.ApiRootUrl + 'products', { brand_id: that.data.id, page: that.data.page, size: that.data.size })
+    util.request(api.ApiRootUrl + 'products', { brand_id: that.data.id, page: that.data.page, per_page: that.data.size })
       .then(function (res) {
         that.setData({
           goodsList: that.data.goodsList.concat(res.data.products),
