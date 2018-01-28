@@ -1,0 +1,27 @@
+<view class="container">
+  <view class="order-box">
+    <view class="order-item address">
+      <view class="l">
+        <text class="name">门店地址</text>
+      </view>
+      <view class="r address">
+        <text class="txt address">平昌县同州办事处新华街西段 米其林/倍耐力轮胎授权店</text>
+      </view>
+    </view>
+     <view class="order-item no-border">
+      <view class="l">
+        <text class="name">联系电话</text>
+      </view>
+      <view class="r">
+        <text class="txt">13550477797</text>
+      </view>
+    </view>
+    
+  </view>
+
+  <view class="goods-items">
+    
+  </view>
+
+  
+</view>

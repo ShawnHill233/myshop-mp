@@ -27,12 +27,12 @@
         <text class="txt address">门店安装</text>
       </view>
     </view>
-    <view class="order-item ">
-      <view class="l">
+    <view class="order-item address">
+      <view class="l address">
         <text class="name">门店地址</text>
       </view>
-      <view class="r">
-        <text class="txt address">平昌县大身镇东舍坊街22号</text>
+      <view class="r address">
+        <text class="txt address">平昌县同州办事处新华街西段 米其林/倍耐力轮胎授权店</text>
       </view>
     </view>
     <view class="order-item no-border">

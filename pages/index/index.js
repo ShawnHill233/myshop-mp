@@ -27,7 +27,7 @@ Page({
       { icon_url: '/static/images/ic_menu_dianping.png', name: '电瓶', url: '../category/category?metaTitle=电瓶&metaDescription=' },
       { icon_url: '/static/images/ic_menu_weixiu.png', name: '维修', url: '../category/category?metaTitle=维修&metaDescription=' },
       { icon_url: '/static/images/ic_menu_fuwu.png', name: '车主服务', url: '../category/category?metaTitle=车主服务&metaDescription=' },
-      { icon_url: '/static/images/ic_menu_mendian.png', name: '门店', url: '../category/category?metaTitle=门店&metaDescription=' }]
+      { icon_url: '/static/images/ic_menu_mendian.png', name: '门店', url: '../storeAddress/storeAddress?metaTitle=门店&metaDescription=' }]
   },
   onShareAppMessage: function () {
     return {
