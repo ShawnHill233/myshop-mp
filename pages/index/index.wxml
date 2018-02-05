@@ -54,14 +54,14 @@
       </navigator>
     </view>
     <view class="b">
-      <view class="item item-1" wx:for="{{brand}}" wx:key="item.id">
+      <view class="item item-1" wx:for="{{clearBrands}}" wx:key="item.id">
         <navigator url="/pages/brandDetail/brandDetail?id={{item.id}}">
-          <view class="wrap">
+           <view class="wrap">
             <image class="img" src="{{item.icon}}" mode="aspectFill"></image>
             <view class="mt">
-              <text class="brand">{{item.name}}</text>
-              <text class="price">{{item.floor_price}}</text>
-              <text class="unit">元起</text>
+              <!-- <text class="brand">{{item.name}}</text> -->
+              <!-- <text class="price">{{item.floor_price}}</text> -->
+              <text class="unit">{{item.intro}}</text>
             </view>
           </view>
         </navigator>

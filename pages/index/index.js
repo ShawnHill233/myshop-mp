@@ -15,6 +15,7 @@ Page({
       { new_pic_url: '/static/images/timg-3.jpeg', name: '邓禄普', intro: '送胎压监测' },
       { new_pic_url: '/static/images/timg-4.jpeg', name: '固特异', intro: '送胎压监测' }
     ],
+    clearBrands: [],
     maintainBrands: [],
     floorGoods: [],
     banner: [],
