@@ -50,6 +50,9 @@ Page({
         banner: res.data.banners,
         tireBrands: res.data.tire_brands,
         clearBrands: res.data.clear_brands,
+        rhyBrands: res.data.clear_brands.slice(0,5),
+        zdBrands: res.data.clear_brands.slice(5, 8),
+        lxqBrands: res.data.clear_brands.slice(8, 10),
         // channel: res.data.channel
       });
       console.log("banner..", that.data.banner)

@@ -412,3 +412,7 @@
   width: 70rpx;
   height: 70rpx;
 }
+
+.sub-h {
+  text-align: center;
+}

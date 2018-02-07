@@ -5,6 +5,7 @@ Page({
   data: {
     name: '',
     mobile: '',
+    vehicle_type: '',
   },
 
   onLoad: function () {
@@ -12,7 +13,8 @@ Page({
     util.request(api.ApiRootUrl + 'users/info').then(function (res) {
       that.setData({
         name: res.data.name ? res.data.name : wx.getStorageSync('userInfo').nickName,
-        mobile: res.data.mobile
+        mobile: res.data.mobile,
+        vehicle_type: res.data.vehicle_type
       });
     });
 
