@@ -41,6 +41,7 @@ Page({
     util.request(api.ApiRootUrl + 'users/info', {
       name: e.detail.value.name,
       mobile: e.detail.value.mobile,
+      vehicle_type: e.detail.value.vehicle_type
     }, 'POST').then(function (res) {
       wx.navigateBack()
       // wx.navigateTo({
