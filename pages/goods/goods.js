@@ -52,7 +52,7 @@ Page({
         //   });
         // }
 
-        // WxParse.wxParse('goodsDetail', 'html', res.data.info.goods_desc, that);
+        WxParse.wxParse('goodsDetail', 'html', res.data.details, that);
 
         // that.getGoodsRelated();
     });
