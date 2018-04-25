@@ -39,7 +39,7 @@
     "navigationBarBackgroundColor": "#fff",
     "navigationBarTitleText": "平昌养车",
     "navigationBarTextStyle": "black",
-    "enablePullDownRefresh": "true"
+    "enablePullDownRefresh": true
   },
   "tabBar": {
     "backgroundColor": "#fafafa",
