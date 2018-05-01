@@ -22,7 +22,7 @@ Page({
     openAttr: false,
     noCollectImage: "/static/images/icon_collect.png",
     hasCollectImage: "/static/images/icon_collect_checked.png",
-    collectBackImage: "/static/images/icon_collect.png"
+    collectBackImage: "/static/images/icon_collect.png",
   },
   getGoodsInfo: function () {
     let that = this;
@@ -311,8 +311,74 @@ Page({
   },
 
   buyNow: function(){
-    wx.navigateTo({
-      url: '../shopping/checkout/checkout?type=buyNow&variantId=' +  this.data.goods.id + '&quantity=' + this.data.number
+    // this.showSelector();
+    this.showModal();
+    // wx.navigateTo({
+    //   url: '../shopping/checkout/checkout?type=buyNow&variantId=' +  this.data.goods.id + '&quantity=' + this.data.number
+    // })
+  },
+
+
+  showModal: function () {
+    //背景动画
+    var bodyAnimation = wx.createAnimation({
+      duration: 200,
+      timingFunction: 'linear',
     })
-  }
+    this.bodyAnimation = bodyAnimation
+    bodyAnimation.scale(0.9, 0.9).step()
+    this.setData({
+      bodyAnimationData: bodyAnimation.export()
+    })
+    // 显示遮罩层
+    var animation = wx.createAnimation({
+      duration: 200,
+      timingFunction: "linear",
+      delay: 0
+    })
+    this.animation = animation
+    animation.translateY(300).step()
+    this.setData({
+      animationData: animation.export(),
+      showModalStatus: true
+    })
+    // setTimeout(function () {
+      animation.translateY(0).step()
+      this.setData({
+        animationData: animation.export()
+      })
+    // }.bind(this), 200)
+   
+  },
+  hideModal: function () {
+    //背景动画
+    var bodyAnimation = wx.createAnimation({
+      duration: 200,
+      timingFunction: 'linear',
+    })
+    this.bodyAnimation = bodyAnimation
+    bodyAnimation.scale(1, 1).step()
+    this.setData({
+      bodyAnimationData: bodyAnimation.export()
+    })
+    // 隐藏遮罩层
+    var animation = wx.createAnimation({
+      duration: 200,
+      timingFunction: "linear",
+      delay: 0
+    })
+    this.animation = animation
+    animation.translateY(300).step()
+    this.setData({
+      animationData: animation.export(),
+    })
+    // setTimeout(function () {
+      animation.translateY(0).step()
+      this.setData({
+        animationData: animation.export(),
+        showModalStatus: false
+      })
+    // }.bind(this), 200)
+    
+  },
 })

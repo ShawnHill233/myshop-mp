@@ -1,4 +1,4 @@
-<scroll-view class="container" scroll-y="true">
+<scroll-view class="container" scroll-y="true" animation="{{bodyAnimationData}}">
   <view wx:if="{{!openAttr}}">
     <swiper class="goodsimgs" indicator-dots="true" autoplay="true" interval="3000" duration="1000">
       <swiper-item wx:for="{{gallery}}" wx:key="{{item.id}}">
@@ -22,14 +22,16 @@
         </view> -->
       </view>
     </view>
-    <view class="section-nav section-attr">
-      <view class="t">请选择数量</view>
-      <!-- <image class="i" src="../../static/images/address_right.png" background-size="cover"></image> -->
-      <view class="number-item i">
-        <view class="selnum">
-          <view class="cut" bindtap="cutNumber">-</view>
-          <input value="{{number}}" class="number" disabled="true" type="number" />
-          <view class="add" bindtap="addNumber">+</view>
+    <view>
+      <view class="section-nav section-attr">
+        <view class="t">请选择数量</view>
+        <!-- <image class="i" src="../../static/images/address_right.png" background-size="cover"></image> -->
+        <view class="number-item i">
+          <view class="selnum">
+            <view class="cut" bindtap="cutNumber">-</view>
+            <input value="{{number}}" class="number" disabled="true" type="number" />
+            <view class="add" bindtap="addNumber">+</view>
+          </view>
         </view>
       </view>
     </view>
@@ -85,10 +87,10 @@
 
 
     <view class="common-problem">
-       <view class="h">
+      <view class="h">
         <!-- <view class="line"></view> -->
         <!-- <text class="title">常见问题</text> -->
-      </view> 
+      </view>
       <view class="b">
         <view class="item" wx:for="{{issueList}}" wx:key="{{item.id}}">
           <view class="question-box">
@@ -145,21 +147,46 @@
           <view class="add" bindtap="addNumber">+</view>
         </view>
       </view>
+
     </view>
   </view>
+
+
 </scroll-view>
+<!--屏幕背景变暗的背景  -->
+<view class="commodity_screen" bindtap="hideModal" wx:if="{{showModalStatus}}" catchtouchmove='true'></view>
+<!--弹出框  -->
+<view animation="{{animationData}}" class="commodity_attr_box" wx:if="{{showModalStatus}}" catchtouchmove='true'>
+  <view class='option_types' wx:for="{{goods.option_types}}" wx:for-item="kitem">
+    <view class='t'>{{kitem.name}}</view>
+    <view class='option_values' wx:for="{{kitem.option_values}}" wx:for-item="vitem">
+      <checkbox>{{vitem.name}}</checkbox>
+    </view>
+  </view>
+
+  <view class="t">数量</view>
+  <!-- <image class="i" src="../../static/images/address_right.png" background-size="cover"></image> -->
+  <view class="number-item i">
+    <view class="selnum">
+      <view class="cut" bindtap="cutNumber">-</view>
+      <input value="{{number}}" class="number" disabled="true" type="number" />
+      <view class="add" bindtap="addNumber">+</view>
+    </view>
+  </view>
+</view>
+
 
 <view class="bottom-btn">
-    <!-- <view class="l l-collect {{ openAttr ? 'back' : ''}}" bindtap="closeAttrOrCollect">
+  <!-- <view class="l l-collect {{ openAttr ? 'back' : ''}}" bindtap="closeAttrOrCollect">
       <image class="icon" src="{{ collectBackImage }}"></image>
     </view> -->
-    <view class="l l-cart">
-      <view class="box">
-        <text class="cart-count">{{cartGoodsCount}}</text>
-        <image bindtap="openCartPage" class="icon" src="/static/images/ic_menu_shoping_nor.png"></image>
+  <view class="l l-cart">
+    <view class="box">
+      <text class="cart-count">{{cartGoodsCount}}</text>
+      <image bindtap="openCartPage" class="icon" src="/static/images/ic_menu_shoping_nor.png"></image>
 
-      </view>
     </view>
-    <view class="c" bindtap='buyNow'>立即购买</view>
-    <view class="r" bindtap="addToCart">加入购物车</view>
   </view>
+  <view class="c" bindtap='buyNow'>立即购买</view>
+  <view class="r" bindtap="addToCart">加入购物车</view>
+</view>
