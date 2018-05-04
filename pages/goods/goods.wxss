@@ -653,6 +653,7 @@
   margin-right: 25rpx;
   margin-bottom: 16.5rpx;
   border: 1px solid #333;
+  border-radius: 3px;
   font-size: 25rpx;
   color: #333;
 }
