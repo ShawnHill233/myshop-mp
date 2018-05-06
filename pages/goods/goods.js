@@ -28,33 +28,33 @@ Page({
     let that = this;
     util.request(api.ApiRootUrl + "products/" + that.data.id).then(function (res) {
       console.log("goods res...", res)
-      
-        that.setData({
-          goods: res.data,
-          gallery: res.data.images,
-          attribute: res.data.product_properties,
-          // issueList: res.data.issue,
-          // comment: res.data.comment,
-          // brand: res.data.brand,
-          specificationList: res.data.option_types,
-          productList: res.data.variants,
-          // userHasCollect: res.data.userHasCollect
-        });
-        console.log("gallery...", that.data.gallery)
 
-        // if (res.data.userHasCollect == 1) {
-        //   that.setData({
-        //     'collectBackImage': that.data.hasCollectImage
-        //   });
-        // } else {
-        //   that.setData({
-        //     'collectBackImage': that.data.noCollectImage
-        //   });
-        // }
+      that.setData({
+        goods: res.data,
+        gallery: res.data.images,
+        attribute: res.data.product_properties,
+        // issueList: res.data.issue,
+        // comment: res.data.comment,
+        // brand: res.data.brand,
+        specificationList: res.data.option_types,
+        productList: res.data.variants,
+        // userHasCollect: res.data.userHasCollect
+      });
+      console.log("gallery...", that.data.gallery)
 
-        WxParse.wxParse('goodsDetail', 'html', res.data.details, that);
+      // if (res.data.userHasCollect == 1) {
+      //   that.setData({
+      //     'collectBackImage': that.data.hasCollectImage
+      //   });
+      // } else {
+      //   that.setData({
+      //     'collectBackImage': that.data.noCollectImage
+      //   });
+      // }
 
-        // that.getGoodsRelated();
+      WxParse.wxParse('goodsDetail', 'html', res.data.details, that);
+
+      // that.getGoodsRelated();
     });
   },
   getGoodsRelated: function () {
@@ -167,16 +167,21 @@ Page({
 
   },
   getCheckedProductItem: function (key) {
-    return this.data.productList.filter(function (v) {
-      var option_value_ids = v.option_values.map(function (ov) {
+    if (this.data.goods.variants.length > 0) {
+      return this.data.productList.filter(function (v) {
+        var option_value_ids = v.option_values.map(function (ov) {
           return ov.id;
         });
-      if (option_value_ids.sort().join(',') == key.sort().join(',')) {
-        return true;
-      } else {
-        return false;
-      }
-    });
+        if (option_value_ids.sort().join(',') == key.sort().join(',')) {
+          return true;
+        } else {
+          return false;
+        }
+      })[0];
+    } else {
+      return this.data.goods.master
+    }
+
   },
   onLoad: function (options) {
     // 页面初始化 options为页面跳转所带来的参数
@@ -187,9 +192,9 @@ Page({
     var that = this;
     this.getGoodsInfo();
     util.request(api.ApiRootUrl + 'carts').then(function (res) {
-        that.setData({
-          cartGoodsCount: res.data.items_count
-        });
+      that.setData({
+        cartGoodsCount: res.data.items_count
+      });
     });
   },
   onReady: function () {
@@ -218,7 +223,7 @@ Page({
     var that = this;
     if (this.data.showModalStatus == false) {
       this.showModal();
-    }else{
+    } else {
       //提示选择完整规格
       if (!this.isCheckedAllSpec()) {
         wx.showToast({
@@ -232,6 +237,7 @@ Page({
       //根据选中的规格，判断是否有对应的sku信息
       let checkedProduct = this.getCheckedProductItem(this.getCheckedSpecKey());
       if (!checkedProduct || checkedProduct.length <= 0) {
+        console.log("no product variant")
         //找不到对应的product信息，提示没有库存
         return false;
       }
@@ -241,37 +247,38 @@ Page({
         //找不到对应的product信息，提示没有库存
         return false;
       }
+
       //添加到购物车
       console.log('cart add request start')
-      var _variant_id = checkedProduct[0].id
-      util.request(api.ApiRootUrl + 'carts/add', { variant_id: _variant_id, quantity: this.data.number}, "POST").then(function (res) {
-          console.log('cart add request res..', res)
-          let _res = res;
-          // if (_res.error != null) {
-            wx.showToast({
-              title: '添加成功'
-            });
-            that.setData({
-              cartGoodsCount: _res.data.items_count
-            });
-            if (that.data.userHasCollect == 1) {
-              that.setData({
-                'collectBackImage': that.data.hasCollectImage
-              });
-            } else {
-              that.setData({
-                'collectBackImage': that.data.noCollectImage
-              });
-            }
-          // } else {
-          //   wx.showToast({
-          //     image: '/static/images/icon_error.png',
-          //     title: _res.errmsg,
-          //     mask: true
-          //   });
-          // }
-
+      var _variant_id = checkedProduct.id
+      util.request(api.ApiRootUrl + 'carts/add', { variant_id: _variant_id, quantity: this.data.number }, "POST").then(function (res) {
+        console.log('cart add request res..', res)
+        let _res = res;
+        // if (_res.error != null) {
+        wx.showToast({
+          title: '添加成功'
         });
+        that.setData({
+          cartGoodsCount: _res.data.items_count
+        });
+        if (that.data.userHasCollect == 1) {
+          that.setData({
+            'collectBackImage': that.data.hasCollectImage
+          });
+        } else {
+          that.setData({
+            'collectBackImage': that.data.noCollectImage
+          });
+        }
+        // } else {
+        //   wx.showToast({
+        //     image: '/static/images/icon_error.png',
+        //     title: _res.errmsg,
+        //     mask: true
+        //   });
+        // }
+
+      });
     }
 
 
@@ -287,7 +294,7 @@ Page({
     });
   },
 
-  buyNow: function(){
+  buyNow: function () {
     this.showModal();
     // wx.navigateTo({
     //   url: '../shopping/checkout/checkout?type=buyNow&variantId=' +  this.data.goods.id + '&quantity=' + this.data.number
@@ -319,12 +326,12 @@ Page({
       showModalStatus: true
     })
     // setTimeout(function () {
-      animation.translateY(0).step()
-      this.setData({
-        animationData: animation.export()
-      })
+    animation.translateY(0).step()
+    this.setData({
+      animationData: animation.export()
+    })
     // }.bind(this), 200)
-   
+
   },
   hideModal: function () {
     //背景动画
@@ -349,12 +356,12 @@ Page({
       animationData: animation.export(),
     })
     // setTimeout(function () {
-      animation.translateY(0).step()
-      this.setData({
-        animationData: animation.export(),
-        showModalStatus: false
-      })
+    animation.translateY(0).step()
+    this.setData({
+      animationData: animation.export(),
+      showModalStatus: false
+    })
     // }.bind(this), 200)
-    
+
   },
 })
