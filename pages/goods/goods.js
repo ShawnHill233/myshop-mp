@@ -7,7 +7,6 @@ Page({
   data: {
     id: 0,
     goods: {},
-    checked_variant_id: '',
     showModalStatus: false,
     gallery: [],
     attribute: [],
@@ -244,7 +243,8 @@ Page({
       }
       //添加到购物车
       console.log('cart add request start')
-      util.request(api.ApiRootUrl + 'carts/add', { variant_id: this.data.goods.id, quantity: this.data.number}, "POST").then(function (res) {
+      var _variant_id = checkedProduct[0].id
+      util.request(api.ApiRootUrl + 'carts/add', { variant_id: _variant_id, quantity: this.data.number}, "POST").then(function (res) {
           console.log('cart add request res..', res)
           let _res = res;
           // if (_res.error != null) {
