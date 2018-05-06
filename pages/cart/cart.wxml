@@ -23,8 +23,9 @@
                   <text class="name">{{item.name}}</text>
                   <text class="num">x{{item.quantity}}</text>
                 </view>
+                <!-- <view class='attr'>{{item.options_text}}</view> -->
                 <view class="attr">
-                <!-- {{ isEditCart ? '已选择:' : ''}}{{item.goods_specifition_name_value}} -->
+                 {{ isEditCart ? '已选择:' : ''}}{{item.options_text}} 
                 </view>
                 <view class="b">
                   <text class="price">￥{{item.price * item.quantity}}</text>
