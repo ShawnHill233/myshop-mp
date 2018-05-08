@@ -645,13 +645,13 @@
 }
 
 .spec-con .value {
-  display: inline-block;
+   display: inline-block; 
   height: 62rpx;
   padding: 0 35rpx;
   line-height: 56rpx;
   text-align: center;
-  margin-right: 25rpx;
-  margin-bottom: 16.5rpx;
+   margin-right: 25rpx; 
+  /* margin-bottom: 16.5rpx; */
   border: 1px solid #333;
   border-radius: 3px;
   font-size: 25rpx;
@@ -715,7 +715,7 @@
 
 .commodity_attr_box {
   width: 100%;
-  overflow: hidden;
+  overflow: hidden; 
   position: fixed;
   bottom: 0;
   left: 0;

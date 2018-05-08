@@ -138,8 +138,8 @@
     </view>
   <view class='option_types spec-item' wx:for="{{specificationList}}" wx:for-item="kitem">
     <view class='t'>{{kitem.name}}</view>
-    <view class='option_values values' wx:for="{{kitem.option_values}}" wx:for-item="vitem">
-      <view class="option_value value {{vitem.checked ? 'selected' : ''}} {{vitem.selectable ? '' : '' }}" data-value-id="{{vitem.id}}" data-name-id="{{kitem.id}}" bindtap="clickSkuValue">{{vitem.name}}</view>
+    <view class='option_values values'>
+      <view class="option_value value {{vitem.checked ? 'selected' : ''}} {{vitem.selectable ? '' : '' }}" wx:for="{{kitem.option_values}}" wx:for-item="vitem" data-value-id="{{vitem.id}}" data-name-id="{{kitem.id}}" bindtap="clickSkuValue">{{vitem.name}}</view>
     </view>
   </view>
 
