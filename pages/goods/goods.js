@@ -31,7 +31,7 @@ Page({
 
       that.setData({
         goods: res.data,
-        gallery: res.data.images,
+        gallery: res.data.images.large,
         attribute: res.data.product_properties,
         // issueList: res.data.issue,
         // comment: res.data.comment,
